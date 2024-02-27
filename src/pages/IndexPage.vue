@@ -27,11 +27,16 @@ const tg = window.Telegram.WebApp
 
 onMounted(() => {
   tg.ready()
+
+  userName.value = tg.initDataUnsafe?.user?.username
+  // userName.value = 'sdf'
 })
 
 const onClose = () => {
   tg.close()
 }
+
+
 
 const sendMessage = () => {
   let json = {
