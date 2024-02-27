@@ -42,6 +42,7 @@ const sendMessage = () => {
   let json = {
     items: userName.value
   }
+  tg.sendData(JSON.stringify(json))
 
 
   // exchange.sendCurrencies(json)
