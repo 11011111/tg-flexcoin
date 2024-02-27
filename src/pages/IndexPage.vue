@@ -53,7 +53,7 @@ const sendMessage = () => {
   // tg.sendData(JSON.stringify(json))
 
 
-  exchange.sendCurrencies(json)
+  exchange.sendCurrencies(data)
     .then(r => {
       console.log(r.data)
     })
