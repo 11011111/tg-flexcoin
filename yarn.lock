@@ -339,6 +339,11 @@
     "@types/mime" "*"
     "@types/node" "*"
 
+"@types/telegram-web-app@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@types/telegram-web-app/-/telegram-web-app-7.0.0.tgz#aea95bb2cf81df228da58104a753599cc73d55fb"
+  integrity sha512-BgR/Q8id0c8/lq/4XUMJ2Jw6czioKbLbNqURr62wysch5yJcITHZQWKrr6KyPDrO+2cCTWwCJopSp3FY37N/6w==
+
 "@typescript-eslint/eslint-plugin@^5.10.0":
   version "5.62.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.62.0.tgz#aeef0328d172b9e37d9bab6dbc13b87ed88977db"
@@ -3155,7 +3160,15 @@ vue-router@^4.0.12:
   dependencies:
     "@vue/devtools-api" "^6.5.1"
 
-vue@^3.4.18:
+vue-tg@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/vue-tg/-/vue-tg-0.4.0.tgz#0dfa2bc6319af35dc55e5663f093e52edf3d2add"
+  integrity sha512-NT1uvb9xLz0iOsg8ef7pI7Z4v4+YvKA90u7AbQ2EeOhXcoIPiNlsV0hVDltQxKYivNd4IHndEks6BH04keVbaw==
+  dependencies:
+    "@types/telegram-web-app" "^7.0.0"
+    vue "^3"
+
+vue@^3, vue@^3.4.18:
   version "3.4.20"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.4.20.tgz#1d08d3ea8c5c294c15cd61aee2b78dc5f621ff7f"
   integrity sha512-xF4zDKXp67NjgORFX/HOuaiaKYjgxkaToK0KWglFQEYlCw9AqgBlj1yu5xa6YaRek47w2IGiuvpvrGg/XuQFCw==
