@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-// import exchange from 'src/api/exchange'
+import exchange from 'src/api/exchange'
 
 
 const userName = ref('')
@@ -39,18 +39,26 @@ const onClose = () => {
 
 
 const sendMessage = () => {
-  let json = {
+  let data = {
     items: userName.value
   }
-  tg.sendData(JSON.stringify(json))
+
+  // fetch('https://a04a-103-105-213-22.ngrok-free.app/api/v1/bot/available/currencies', {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //
+  // })
+  // tg.sendData(JSON.stringify(json))
 
 
-  // exchange.sendCurrencies(json)
-  //   .then(r => {
-  //     console.log(r.data)
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   })
+  exchange.sendCurrencies(json)
+    .then(r => {
+      console.log(r.data)
+    })
+    .catch(err => {
+      console.log(err);
+    })
 }
 </script>
