@@ -45,7 +45,7 @@ const sendMessage = () => {
 
   initDt.value = tg.initData
 
-  authRequest({ method: 'get', params: initDt })
+  authRequest({ method: 'get', params: initDt.value })
     .then((r) => {
       console.log(r.data)
     })
