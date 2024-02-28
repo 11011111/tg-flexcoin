@@ -51,8 +51,8 @@ const sendMessage = () => {
     items: userName.value
   }
 
-  console.log(tg.initData);
-  exchange.getAuth(tg.initData)
+  console.log(Telegram.WebApp.initData);
+  exchange.getAuth(Telegram.WebApp.initData)
     .then(r => {
       console.log(r.data);
     })
