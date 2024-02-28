@@ -12,8 +12,7 @@
         label="First name"
       />
       InitData:
-      {{tg.initData}}<br>
-      {{tg}}
+      {{initDt}}
       <q-btn @click="sendMessage" label="Send" class="bg-primary q-mt-lg" text-color="white"/>
     </q-form>
   </q-page>
@@ -25,6 +24,7 @@ import exchange from 'src/api/exchange'
 
 
 const userName = ref('')
+const initDt = ref()
 
 const tg = window.Telegram.WebApp
 
@@ -54,8 +54,9 @@ const sendMessage = () => {
     items: userName.value
   }
 
-  console.log(Telegram.WebApp.initData);
-  exchange.getAuth(Telegram.WebApp.initData)
+  initDt.value = tg.initData
+
+  exchange.getAuth(initDt.value)
     .then(r => {
       console.log(r.data);
     })
