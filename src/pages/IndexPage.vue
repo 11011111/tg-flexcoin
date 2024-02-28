@@ -51,6 +51,7 @@ const sendMessage = () => {
     items: userName.value
   }
 
+  console.log(tg.initData);
   exchange.getAuth(tg.initData)
     .then(r => {
       console.log(r.data);
