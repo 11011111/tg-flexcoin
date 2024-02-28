@@ -51,6 +51,14 @@ const sendMessage = () => {
     items: userName.value
   }
 
+  exchange.getAuth(tg.initData)
+    .then(r => {
+      console.log(r.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
   // fetch('https://a04a-103-105-213-22.ngrok-free.app/api/v1/bot/available/currencies', {
   //   method: 'GET',
   //   headers: {
