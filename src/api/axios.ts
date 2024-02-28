@@ -1,7 +1,7 @@
 import axios from 'axios'
 // import store from '/src/store/module-startPage/index'
 
-const api = axios.create({ baseURL: 'https://3563-103-105-213-31.ngrok-free.app/' })
+const api = axios.create({ baseURL: 'https://9981-103-105-213-17.ngrok-free.app/' })
 
 // api.interceptors.request.use(function (config) {
 //   const ref_id = localStorage.getItem('ref_id')
