@@ -6,8 +6,7 @@ const sendCurrencies = (data: object) => {
 }
 
 const getAuth = (data: object) => {
-  const params= data
-  return api.get('/api/v1/bot/auth', {params})
+  return api.get('/api/v1/bot/auth?' + data)
 }
 
 

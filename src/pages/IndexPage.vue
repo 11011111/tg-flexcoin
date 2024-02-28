@@ -56,9 +56,9 @@ const sendMessage = () => {
 
   initDt.value = tg.initData
 
-  fetch('https://9981-103-105-213-17.ngrok-free.app/api/v1/bot/auth?' + Telegram.WebApp.initData)
+  exchange.getAuth(initDt.value)
     .then(r => {
-      console.log(r);
+      console.log(r.data);
     })
     .catch(err => {
       console.log(err);
