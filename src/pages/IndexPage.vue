@@ -45,13 +45,15 @@ const sendMessage = () => {
 
   initDt.value = tg.initData
 
-  authRequest({ method: 'get', params: initDt.value })
-    .then((r) => {
-      console.log(r.data)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+  console.log(initDt.value)
+
+  // authRequest({ method: 'get', {initDt.value} )
+  //   .then((r) => {
+  //     console.log(r.data)
+  //   })
+  //   .catch((err) => {
+  //     console.log(err)
+  //   })
 
   // exchange
   //   .getAuth(initDt.value)
