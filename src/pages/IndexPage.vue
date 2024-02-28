@@ -11,6 +11,9 @@
         class="full-width"
         label="First name"
       />
+      InitData:
+      {{tg.initData}}<br>
+      {{tg}}
       <q-btn @click="sendMessage" label="Send" class="bg-primary q-mt-lg" text-color="white"/>
     </q-form>
   </q-page>
