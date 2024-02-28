@@ -1,13 +1,13 @@
 {
   "name": "tg-flexcoin",
   "version": "0.0.1",
-  "description": "A Quasar Project",
+  "description": "FlexCoin",
   "productName": "Telegram Web Flexcoin",
   "author": "11011111@inbox.ru",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue ./",
-    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "format": "prettier --write \"**/*.{js,ts,vue,scss,sass,html,md,json,pug}\" --config .prettierrc.json5 --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
     "build": "quasar build"
@@ -15,7 +15,9 @@
   "dependencies": {
     "@quasar/extras": "^1.16.4",
     "axios": "^1.2.1",
+    "dotenv": "^16.4.5",
     "pinia": "^2.0.11",
+    "pug": "^3.0.2",
     "quasar": "^2.8.0",
     "vue": "^3.4.18",
     "vue-i18n": "^9.2.2",
