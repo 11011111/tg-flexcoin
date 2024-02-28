@@ -5,7 +5,13 @@ const sendCurrencies = (data: object) => {
   return api.get('/api/v1/bot/available/currencies', {params})
 }
 
+const getAuth = (data: string) => {
+  const params= data
+  return api.get('/api/v1/bot/auth', {params})
+}
+
 
 export default {
-  sendCurrencies
+  sendCurrencies,
+  getAuth
 }

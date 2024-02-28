@@ -29,6 +29,14 @@ onMounted(() => {
   tg.ready()
 
   userName.value = tg.initDataUnsafe?.user?.username
+
+  exchange.getAuth(tg.initData)
+    .then(r => {
+      console.log(r.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
   // userName.value = 'sdf'
 })
 
@@ -53,12 +61,12 @@ const sendMessage = () => {
   // tg.sendData(JSON.stringify(json))
 
 
-  exchange.sendCurrencies(data)
-    .then(r => {
-      console.log(r.data)
-    })
-    .catch(err => {
-      console.log(err);
-    })
+  // exchange.sendCurrencies(data)
+  //   .then(r => {
+  //     console.log(r.data)
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   })
 }
 </script>
