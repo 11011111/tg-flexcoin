@@ -22,6 +22,17 @@ export const profileState = defineStore('profileState', () => {
       .catch((err) => console.log(err))
   }
 
+  function getCurrency() {
+    api
+      .get(`${apiLinks.AUTH.list}`)
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   //Add token
   function storeTokens(token: UUID) {
     localStorage.setItem('access', token)
@@ -40,6 +51,7 @@ export const profileState = defineStore('profileState', () => {
 
     login,
     storeTokens,
-    logout
+    logout,
+    getCurrency
   }
 })
