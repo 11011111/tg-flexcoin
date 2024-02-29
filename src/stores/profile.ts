@@ -25,7 +25,10 @@ export const profileState = defineStore('profileState', () => {
   function getCurrency() {
     api
       .get(`${apiLinks.CURRENCIES.list}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('access')}` }
+        headers: {
+          Authorization:
+            'Bearer 6d983e5fa5021e560c4172b7a0714b4f02543492d1a1b87933476258f39aadf083'
+        }
       })
       .then((res) => {
         console.log(res.data)
