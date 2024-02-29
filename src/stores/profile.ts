@@ -10,6 +10,7 @@ export const profileState = defineStore('profileState', () => {
   const router = useRouter()
   const error = ref(null)
   const tg = window.Telegram.WebApp
+  const header = `Authorization: Bearer ${localStorage.getItem('access')}`
 
   //Auth
   function login(iditData: string) {
@@ -24,7 +25,7 @@ export const profileState = defineStore('profileState', () => {
 
   function getCurrency() {
     api
-      .get(`${apiLinks.CURRENCIES.list}`)
+      .get(`${apiLinks.CURRENCIES.list}`, { headers: { header } })
       .then((res) => {
         console.log(res.data)
       })
@@ -35,7 +36,7 @@ export const profileState = defineStore('profileState', () => {
 
   //Add token
   function storeTokens(token: UUID) {
-    // localStorage.setItem('access', token)
+    localStorage.setItem('access', token)
   }
 
   //logout
