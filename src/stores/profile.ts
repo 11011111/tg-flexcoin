@@ -9,12 +9,16 @@ export const profileState = defineStore('profileState', () => {
   const calledPath = ref(null)
   const router = useRouter()
   const error = ref(null)
+  const tg = window.Telegram.WebApp
 
   //Auth
   function login(iditData: string) {
     api
       .get(`${apiLinks.AUTH.list}?${iditData}`)
-      .then((r) => storeTokens(r.data.token))
+      .then((r) => {
+        storeTokens(r.data.token)
+        tg.showAlert(r.data)
+      })
       .catch((err) => console.log(err))
   }
 
