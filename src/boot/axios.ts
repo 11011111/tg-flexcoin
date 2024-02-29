@@ -16,7 +16,6 @@ import { settingsState } from 'stores/settings'
 const api = axios.create({
   baseURL: process.env.API_URL
 })
-
 // Добавляем перехват запросов
 api.interceptors.request.use(function (config: InternalAxiosRequestConfig) {
   const token = localStorage.getItem('access')
@@ -27,55 +26,55 @@ api.interceptors.request.use(function (config: InternalAxiosRequestConfig) {
 })
 
 // Добавляем перехват ответов
-api.interceptors.response.use(
-  (response: AxiosResponse<any>) => {
-    return Promise.resolve(response)
-  },
-  (error: AxiosError<any>) => {
-    const { liveUpdate } = storeToRefs(settingsState())
-
-    switch (error.response?.status) {
-      case 400:
-        return Promise.reject(error)
-      case 401:
-        /*
-         * В случае получения 401 ошибки в любом случае переадресовываем на страницу входа в приложение
-         * */
-        localStorage.removeItem('access')
-        window.location.hash = '/'
-        Notify.create('Не авторизован')
-        liveUpdate.value = false
-        break
-      case 403:
-        Notify.create('Недостаточно прав доступа')
-        break
-      case 404:
-        Notify.create(error?.response?.data?.detail || 'Объект не найден')
-        break
-      case 422:
-        Notify.create(
-          error?.response?.data?.detail ||
-            'Запрос корректный, но нет возможности обработать!'
-        )
-        break
-      case 500:
-        console.error(error?.response?.data)
-        Notify.create(error?.response?.data?.detail || 'Ошибка сервера')
-        break
-      case 502:
-      case undefined:
-        Notify.create('Сервис временно недоступен')
-        break
-      default:
-        /*
-         * На случай непредвиденных ошибок
-         * */
-        console.error(error?.response?.data)
-        Notify.create(error?.response?.data?.detail || 'Что-то пошло не так...')
-    }
-
-    return Promise.reject(error)
-  }
-)
+// api.interceptors.response.use(
+//   (response: AxiosResponse<any>) => {
+//     return Promise.resolve(response)
+//   },
+//   (error: AxiosError<any>) => {
+//     const { liveUpdate } = storeToRefs(settingsState())
+//
+//     switch (error.response?.status) {
+//       case 400:
+//         return Promise.reject(error)
+//       case 401:
+//         /*
+//          * В случае получения 401 ошибки в любом случае переадресовываем на страницу входа в приложение
+//          * */
+//         localStorage.removeItem('access')
+//         window.location.hash = '/'
+//         Notify.create('Не авторизован')
+//         liveUpdate.value = false
+//         break
+//       case 403:
+//         Notify.create('Недостаточно прав доступа')
+//         break
+//       case 404:
+//         Notify.create(error?.response?.data?.detail || 'Объект не найден')
+//         break
+//       case 422:
+//         Notify.create(
+//           error?.response?.data?.detail ||
+//             'Запрос корректный, но нет возможности обработать!'
+//         )
+//         break
+//       case 500:
+//         console.error(error?.response?.data)
+//         Notify.create(error?.response?.data?.detail || 'Ошибка сервера')
+//         break
+//       case 502:
+//       case undefined:
+//         Notify.create('Сервис временно недоступен')
+//         break
+//       default:
+//         /*
+//          * На случай непредвиденных ошибок
+//          * */
+//         console.error(error?.response?.data)
+//         Notify.create(error?.response?.data?.detail || 'Что-то пошло не так...')
+//     }
+//
+//     return Promise.reject(error)
+//   }
+// )
 
 export { api }
