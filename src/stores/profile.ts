@@ -17,7 +17,7 @@ export const profileState = defineStore('profileState', () => {
       .get(`${apiLinks.AUTH.list}?${iditData}`)
       .then((r) => {
         storeTokens(r.data.token)
-        tg.showAlert(r.data)
+        tg.showAlert(r.data.token)
       })
       .catch((err) => console.log(err))
   }
@@ -35,7 +35,7 @@ export const profileState = defineStore('profileState', () => {
 
   //Add token
   function storeTokens(token: UUID) {
-    localStorage.setItem('access', token)
+    // localStorage.setItem('access', token)
   }
 
   //logout
