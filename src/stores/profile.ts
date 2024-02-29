@@ -24,7 +24,7 @@ export const profileState = defineStore('profileState', () => {
 
   function getCurrency() {
     api
-      .get(`${apiLinks.AUTH.list}`)
+      .get(`${apiLinks.CURRENCIES.list}`)
       .then((res) => {
         console.log(res.data)
       })
