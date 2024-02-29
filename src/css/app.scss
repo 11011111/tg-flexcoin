@@ -1,5 +1,89 @@
 // app global css in SCSS form
 body{
-  background: var(--tg-theme-bg-color);
+  &.body--light {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+      -webkit-text-fill-color: #000;
+      -webkit-box-shadow: 0 0 0 1000px $light inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+  }
+
+  &.body--dark {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+      -webkit-text-fill-color: #FFFFFF;
+      -webkit-box-shadow: 0 0 0 1000px $dark inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  }
+
+
+
+  //background: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
+
+  .q-field__native, .q-field__prefix, .q-field__suffix, .q-field__input {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    color: $dark;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 26px;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .button-text {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+
+  .label-text {
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 16px;
+  }
+
+  p {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+
+  .field {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+  }
+
+  .q-field--outlined .q-field__control {
+    border-radius: $border-radius;
+    background: $light;
+  }
+
 }
