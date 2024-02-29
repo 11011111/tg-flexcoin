@@ -16,6 +16,8 @@ import { settingsState } from 'stores/settings'
 const api = axios.create({ baseURL: process.env.API_URL })
 
 api.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
+api.defaults.headers['Access-Control-Allow-Origin'] = '*'
+api.defaults.headers['Access-Control-Allow-Credentials'] = true
 
 // Добавляем перехват запросов
 api.interceptors.request.use(function (config: InternalAxiosRequestConfig) {
