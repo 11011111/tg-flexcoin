@@ -23,16 +23,11 @@ export const profileState = defineStore('profileState', () => {
   }
 
   function getCurrency() {
-    fetch(`${process.env.API_URL}${apiLinks.CURRENCIES.list}`, {
-      method: 'GET'
-    })
-      // api
-      //   .get(`${apiLinks.CURRENCIES.list}`, {
-      //     headers: {
-      //       Authorization:
-      //         'Bearer 6d983e5fa5021e560c4172b7a0714b4f02543492d1a1b87933476258f39aadf083'
-      //     }
-      //   })
+    // fetch(`${process.env.API_URL}${apiLinks.CURRENCIES.list}`, {
+    //   method: 'GET'
+    // })
+    api
+      .get(`${apiLinks.CURRENCIES.list}`)
       .then((res) => {
         console.log(res)
       })
