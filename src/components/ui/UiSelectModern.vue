@@ -24,7 +24,7 @@ function changeCurrency(currency: string) {
 <template lang="pug">
 q-btn.modern-btn-select(
   :label="modelValue"
-  icon-right="img:/src/assets/img/unfold_more_horizontal.svg"
+  icon-right="img:~assets/img/unfold_more_horizontal.svg"
   @click="dialogWindow = true"
   flat
 )
