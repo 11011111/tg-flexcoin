@@ -16,7 +16,6 @@ const dialogWindow = ref(false)
 // METHODS
 function changeCurrency(currency: string) {
   emit('update:modelValue', currency)
-  dialogWindow.value = !dialogWindow.value
 }
 // COMPUTED
 </script>
@@ -48,15 +47,13 @@ q-dialog(
             ) {{ currencyItem.label }}
           q-item-section(v-if="currencyItem.denseLabel === modelValue" side)
             q-icon(name="bi-check2" color="primary")
-//q-select(
-//  behavior="dialog"
-//  :model-value="modelValue"
-//  :options="options"
-//  @update:model-value="changeCurrency"
-//  borderless
-//)
-//  template(v-slot:option)
-//    h4  Select the currency
+    q-card-section
+      q-btn.full-width.button-text.btn-style(
+        label="Ok"
+        color="primary"
+        @click="dialogWindow = !dialogWindow"
+        no-caps
+      )
 </template>
 
 <style scoped lang="sass">
@@ -72,4 +69,7 @@ q-dialog(
 
 .color-currency-select
   color: #aaaaaa
+
+.btn-style
+  border-radius: 10px
 </style>
