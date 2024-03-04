@@ -1,16 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const props = defineProps({ modelValue: String })
-const emit = defineEmits(['update:modelValue'])
+defineProps({ modelValue: String, options: [Array, Object] })
 
-const options = ref([
-  { label: 'VND (Vietnam Dong)', denseLabel: 'VND', value: 0 },
-  { label: 'IDR (Indonesian Rupiah)', denseLabel: 'IDR', value: 1 },
-  { label: 'THB (Thai Baht)', denseLabel: 'THB', value: 2 },
-  { label: 'USD (American Dollar)', denseLabel: 'USD', value: 3 },
-  { label: 'TRY (Turkish Lira)', denseLabel: 'TRY', value: 4 }
-])
+const emit = defineEmits(['update:modelValue'])
 const dialogWindow = ref(false)
 
 // METHODS
@@ -42,10 +35,10 @@ q-dialog(
       q-list(v-for="(currencyItem, idx) in options" :key="idx" dense)
         q-item.row.justify-between.no-padding(v-ripple)
           q-item-section.button-text.q-py-sm(
-            @click="changeCurrency(currencyItem.denseLabel)"
-            :class="currencyItem.denseLabel === modelValue ? 'text-primary' : 'color-currency-select'"
-            ) {{ currencyItem.label }}
-          q-item-section(v-if="currencyItem.denseLabel === modelValue" side)
+            @click="changeCurrency(currencyItem?.id)"
+            :class="currencyItem?.id === modelValue ? 'text-primary' : 'color-currency-select'"
+            ) {{ currencyItem.id }} ({{ currencyItem?.name }})
+          q-item-section(v-if="currencyItem?.id === modelValue" side)
             q-icon(name="bi-check2" color="primary")
     q-card-section
       q-btn.full-width.button-text.btn-style(

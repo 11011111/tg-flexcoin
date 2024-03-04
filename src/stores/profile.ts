@@ -32,18 +32,6 @@ export const profileState = defineStore('profileState', () => {
       .catch((err) => console.log(err))
   }
 
-  // Get Currency
-  function getCurrency() {
-    api
-      .get(`${apiLinks.CURRENCIES.list}`)
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
-
   return {
     me,
     calledPath,
@@ -52,7 +40,6 @@ export const profileState = defineStore('profileState', () => {
     login,
     storeTokens,
     logout,
-    getCurrency,
     openWebApp
   }
 })

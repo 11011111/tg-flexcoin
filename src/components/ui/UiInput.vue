@@ -8,7 +8,7 @@
     :suffix="suffix"
     outlined )
     template(v-slot:append v-if="haveAppendSelect" )
-      UiSelectModern(v-model="selectModel" )
+      UiSelectModern(v-model="selectModel" :options="options" )
 
 </template>
 
@@ -21,6 +21,7 @@ const props = defineProps({
   modelValue: String,
   placeholder: String,
   suffix: String,
+  options: [Array, Object],
 
   //отображение выпадающего списка справа
   haveAppendSelect: Boolean
