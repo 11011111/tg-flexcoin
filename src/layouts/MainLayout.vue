@@ -7,26 +7,17 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import { profileState } from 'stores/profile'
 
-const { login, logout } = profileState()
-const userName = ref('')
-const initDt = ref()
-
-const tg = window.Telegram.WebApp
+const { openWebApp } = profileState()
+const tg = window.Telegram.WebApp // init TelegramWebApp
 
 onMounted(() => {
-  tg.ready()
+  tg.ready() // Start tgWebApp
+  const accessToken = localStorage.getItem('access') // check have token
 
-  tg.showAlert(tg.platform)
-
-  // console.log(tg.platform)
-
-  // const accessToken = localStorage.getItem('access')
-
-  // if (accessToken) return
-
-  // login(tg.initData)
+  if (accessToken) return // have token - do nothing now
+  openWebApp(tg.initData) // else - get initData for auth
 })
 </script>

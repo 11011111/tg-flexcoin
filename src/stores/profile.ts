@@ -11,17 +11,28 @@ export const profileState = defineStore('profileState', () => {
   const error = ref(null)
   const tg = window.Telegram.WebApp
 
+  // Start
+  const openWebApp = (initData: string) =>
+    initData ? login(initData) : login(process.env.DEFAULT_DATA || '')
+
+  //Add token
+  const storeTokens = (token: UUID) => localStorage.setItem('access', token)
+  //logout
+  const logout = () => localStorage.removeItem('access')
   //Auth
   function login(iditData: string) {
     api
       .get(`${apiLinks.AUTH.list}?${iditData}`)
       .then((r) => {
-        storeTokens(r.data.token)
-        tg.showAlert(r.data.token)
+        storeTokens(r.data.token) // write token
+        tg.platform === 'unknown' // check platform for Web or TgApp
+          ? alert(r.data.token)
+          : tg.showAlert(r.data.token)
       })
       .catch((err) => console.log(err))
   }
 
+  // Get Currency
   function getCurrency() {
     api
       .get(`${apiLinks.CURRENCIES.list}`)
@@ -33,17 +44,6 @@ export const profileState = defineStore('profileState', () => {
       })
   }
 
-  //Add token
-  function storeTokens(token: UUID) {
-    localStorage.setItem('access', token)
-  }
-
-  //logout
-  function logout() {
-    localStorage.removeItem('access')
-    // void router.push({ name: 'login-page' })
-  }
-
   return {
     me,
     calledPath,
@@ -52,6 +52,7 @@ export const profileState = defineStore('profileState', () => {
     login,
     storeTokens,
     logout,
-    getCurrency
+    getCurrency,
+    openWebApp
   }
 })
