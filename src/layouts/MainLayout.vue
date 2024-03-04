@@ -15,6 +15,7 @@ const tg = window.Telegram.WebApp // init TelegramWebApp
 
 onMounted(() => {
   tg.ready() // Start tgWebApp
+  tg.expand() //full screen
   const accessToken = localStorage.getItem('access') // check have token
 
   if (accessToken) return // have token - do nothing now
