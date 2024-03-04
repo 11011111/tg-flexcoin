@@ -36,7 +36,7 @@ q-dialog(
     q-card-section.no-padding
       .row.items-center.no-wrap
         .col
-          h2.text-center Select the currency
+          h2.text-center.text-dark Select the currency
         .col-auto
           q-icon.q-pb-md(name="bi-x" size="24px" @click="dialogWindow = !dialogWindow")
     q-card-section
