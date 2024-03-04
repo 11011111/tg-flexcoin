@@ -11,7 +11,7 @@ q-card.q-pa-lg
 
 <script setup lang="ts">
 import UiInput from 'components/ui/UiInput.vue'
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { settingsState } from 'stores/settings'
 import { storeToRefs } from 'pinia'
 
@@ -19,10 +19,6 @@ const { getCurrency } = settingsState()
 const { currencyList } = storeToRefs(settingsState())
 const amountCurrency = ref('')
 const amountCoin = ref('')
-
-const getToken = computed(() => {
-  return localStorage.getItem('access')
-})
 
 onMounted(() => {
   getCurrency()
