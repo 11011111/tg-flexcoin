@@ -19,7 +19,9 @@ const tg = window.Telegram.WebApp
 onMounted(() => {
   tg.ready()
 
-  console.log(tg.platform)
+  tg.showAlert(tg.platform)
+
+  // console.log(tg.platform)
 
   // const accessToken = localStorage.getItem('access')
 
