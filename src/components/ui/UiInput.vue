@@ -8,17 +8,13 @@
     :suffix="suffix"
     outlined )
     template(v-slot:append v-if="haveAppendSelect" )
-      q-select(
-        behavior="dialog"
-        :model-value="selectModel"
-        :options="options"
-        borderless
-      )
+      UiSelectModern(v-model="selectModel" )
 
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import UiSelectModern from 'components/ui/UiSelectModern.vue'
 
 const props = defineProps({
   label: String,
@@ -32,7 +28,6 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
-const options = ref(['THB', 'USD', 'RUB'])
 const selectModel = ref('THB')
 
 const keyUpFn = (evt: string) => emit('update:modelValue', evt)

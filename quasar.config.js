@@ -36,7 +36,7 @@ module.exports = configure(function (ctx) {
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
       // 'ionicons-v4',
-      // 'mdi-v7',
+      'mdi-v7',
       'bootstrap-icons',
       // 'fontawesome-v6',
       // 'eva-icons',
@@ -116,7 +116,7 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['Notify']
+      plugins: ['Notify', 'Dialog']
     },
 
     // animations: 'all', // --- includes all animations
