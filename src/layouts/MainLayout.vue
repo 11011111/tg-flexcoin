@@ -17,7 +17,6 @@ const tg = window.Telegram.WebApp // init TelegramWebApp
 const router = useRouter()
 
 onBeforeMount(() => {
-  tg.ready() // Start tgWebApp
   tg.expand() //full screen
   const accessToken = localStorage.getItem('access') // Проверка записи токена в LS
 
