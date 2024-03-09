@@ -9,6 +9,7 @@ const dialogWindow = ref(false)
 // METHODS
 function changeCurrency(currency: string) {
   emit('update:modelValue', currency)
+  dialogWindow.value = !dialogWindow.value
 }
 // COMPUTED
 </script>
@@ -16,8 +17,8 @@ function changeCurrency(currency: string) {
 <template lang="pug">
 q-btn.modern-btn-select(
   :label="modelValue"
-  icon-right="img:~assets/img/unfold_more_horizontal.svg"
-  @click="dialogWindow = true"
+  icon-right="img:https://flexcoin.sgp1.cdn.digitaloceanspaces.com/media/unfold_more_horizontal.svg"
+  @click="dialogWindow = !dialogWindow"
   flat
 )
 q-dialog(
@@ -31,7 +32,7 @@ q-dialog(
           h2.text-center.text-dark Select the currency
         .col-auto
           q-icon.q-pb-md(name="bi-x" size="24px" @click="dialogWindow = !dialogWindow")
-    q-card-section
+    q-card-section.q-pb-lg
       q-list(v-for="(currencyItem, idx) in options" :key="idx" dense)
         q-item.row.justify-between.no-padding(v-ripple)
           q-item-section.button-text.q-py-sm(
@@ -39,14 +40,7 @@ q-dialog(
             :class="currencyItem?.id === modelValue ? 'text-primary' : 'color-currency-select'"
             ) {{ currencyItem.id }} ({{ currencyItem?.name }})
           q-item-section(v-if="currencyItem?.id === modelValue" side)
-            q-icon(name="bi-check2" color="primary")
-    q-card-section
-      q-btn.full-width.button-text.btn-style(
-        label="Ok"
-        color="primary"
-        @click="dialogWindow = !dialogWindow"
-        no-caps
-      )
+            q-icon(name="img:https://flexcoin.sgp1.cdn.digitaloceanspaces.com/media/check.svg" color="primary")
 </template>
 
 <style scoped lang="sass">
@@ -64,5 +58,5 @@ q-dialog(
   color: #aaaaaa
 
 .btn-style
-  border-radius: 10px
+  border-radius: 10px !important
 </style>

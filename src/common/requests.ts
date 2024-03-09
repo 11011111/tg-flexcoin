@@ -12,12 +12,13 @@ export const methods: IMethods = {
 }
 
 const request = (requestData: IRequestData): AxiosPromise => {
-  console.log(requestData)
   return api.request({
     url:
       requestData.urlParam && requestData.link.retrieve
         ? requestData.link.retrieve(requestData.urlParam)
-        : requestData.link.list,
+        : `${requestData.link.list}${
+            requestData.query ? `?${requestData.query}` : '' // add check ?query params
+          }`,
     method: requestData.method || methods.get,
     data:
       // POST PUT PATCH DELETE
@@ -35,8 +36,15 @@ const request = (requestData: IRequestData): AxiosPromise => {
 /**
  * Создание набора предзаполненных реквестов
  */
+// Получить список валют
 export const currenciesRequest = (incomingData?: IIncomingData) =>
   request({ ...incomingData, link: apiLinks.CURRENCIES })
-
+// Авторизоваться
 export const authRequest = (incomingData?: IIncomingData) =>
   request({ ...incomingData, link: apiLinks.AUTH })
+// Получить Onboarding
+export const onboardingRequest = (incomingData?: IIncomingData) =>
+  request({ ...incomingData, link: apiLinks.ONBOARDING })
+// Получить Me
+export const meRequest = (incomingData?: IIncomingData) =>
+  request({ ...incomingData, link: apiLinks.ME })

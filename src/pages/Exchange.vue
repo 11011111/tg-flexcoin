@@ -1,7 +1,7 @@
 <template lang="pug">
 q-card.q-pa-lg
   .row.justify-center
-    img(src="~assets/img/exchange.png" )
+    img(:src="`${imgPath}exchange.svg`")
   h1.text-center Exchange to USDT
 
   .row
@@ -19,6 +19,7 @@ const { getCurrency } = settingsState()
 const { currencyList } = storeToRefs(settingsState())
 const amountCurrency = ref('')
 const amountCoin = ref('')
+const imgPath = process.env.DEFAULT_URL_PATH
 
 onMounted(() => {
   getCurrency()

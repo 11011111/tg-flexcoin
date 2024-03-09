@@ -2,15 +2,15 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { api } from 'boot/axios'
 import { apiLinks } from 'src/common/routerLinks'
+import { currenciesRequest } from 'src/common/requests'
 
 export const settingsState = defineStore('settingsState', () => {
   const liveUpdate = ref(false)
   const currencyList = ref(null)
 
   // Get Currency
-  function getCurrency() {
-    api
-      .get(`${apiLinks.CURRENCIES.list}`)
+  async function getCurrency() {
+    await currenciesRequest()
       .then((res) => {
         currencyList.value = res.data.items
       })

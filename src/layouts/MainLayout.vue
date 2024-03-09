@@ -7,18 +7,25 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onBeforeMount } from 'vue'
 import { profileState } from 'stores/profile'
+import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
 
-const { openWebApp } = profileState()
+const { openWebApp, getMe } = profileState()
 const tg = window.Telegram.WebApp // init TelegramWebApp
+const router = useRouter()
 
-onMounted(() => {
+onBeforeMount(() => {
   tg.ready() // Start tgWebApp
   tg.expand() //full screen
-  const accessToken = localStorage.getItem('access') // check have token
+  const accessToken = localStorage.getItem('access') // Проверка записи токена в LS
 
-  if (accessToken) return // have token - do nothing now
-  openWebApp(tg.initData) // else - get initData for auth
+  // Проверка токена
+  if (accessToken) {
+    getMe() // Если ок - получаем данные пользователя
+  } else {
+    openWebApp(tg.initData) // Иначе - проходим авторизацию
+  }
 })
 </script>

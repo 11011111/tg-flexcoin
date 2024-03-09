@@ -42,6 +42,19 @@ declare interface IIncomingData {
   reports_list?: boolean
   aggregate_info?: boolean
   suffix?: string
+  query?: string
+}
+
+declare interface IModelUser {
+  id: UUID
+  banned: boolean
+  date_create: number
+  first_name: string
+  lang: string
+  last_name: string
+  last_online: number
+  skip_onboarding: boolean
+  username: string
 }
 
 declare interface IRequestData extends IIncomingData {
