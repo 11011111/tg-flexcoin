@@ -28,10 +28,9 @@ export const profileState = defineStore('profileState', () => {
     await authRequest({ query: iditData })
       .then((r) => {
         storeTokens(r.data.token) // write token
-        tg.platform === 'unknown' // check platform for Web or TgApp
-          ? console.log(r.data.token)
-          : tg.showAlert(r.data.token)
-
+        // tg.platform === 'unknown' // check platform for Web or TgApp
+        //   ? console.log(r.data.token)
+        //   : tg.showAlert(r.data.token)
         getMe()
       })
       .catch((err) => console.log(err))
