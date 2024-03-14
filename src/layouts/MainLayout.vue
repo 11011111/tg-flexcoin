@@ -18,6 +18,14 @@ const router = useRouter()
 onBeforeMount(() => {
   tg.expand() //full screen
 
+  console.log(tg.themeParams)
+
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })
+
+import { useQuasar } from 'quasar'
+
+const $q = useQuasar()
+
+$q.dark.set(true)
 </script>
