@@ -1,6 +1,7 @@
 <template lang="pug">
-.flex.justify-center.items-center.full-width(style="height: 100vh")
+.flex.justify-center.items-center.full-width(style="height: 100vh" v-if="onboardingList.length" )
   q-carousel.flex.justify-center.items-center(
+
     style="height: auto"
     v-model="slide"
     control-color="primary"
@@ -26,8 +27,8 @@
             no-caps
           )
     template(v-slot:navigation-icon="{index, active, btnProps, onClick }")
-      q-img.q-mr-sm(v-if="active" :src="'https://flexcoin.sgp1.cdn.digitaloceanspaces.com/dots/active' + (slide + 1) + '.svg'" @click="onClick" :style="'height: 10px; width: ' + activeDots +'px'" no-spinner)
-      q-img.q-mr-sm(v-if="index >= (slide + 1)"  src="https://flexcoin.sgp1.cdn.digitaloceanspaces.com/dots/static.svg" @click="onClick" style="height: 10px; width: 10px" no-spinner)
+      q-img.q-mr-sm(v-if="active" :src="activeImg" @click="onClick" :style="'height: 10px; width: ' + activeDots +'px'" no-spinner)
+      q-img.q-mr-sm(v-if="index >= (slide + 1)"  src="dots/static.svg" @click="onClick" style="height: 10px; width: 10px" no-spinner)
 
 </template>
 
@@ -51,6 +52,10 @@ onBeforeMount(async () => {
 
 const onboardList = computed(() => {
   return onboardingList.value
+})
+
+const activeImg = computed(() => {
+  return `dots/active${slide.value + 1}.svg` || 'dots/active1.svg'
 })
 
 const activeDots = computed(() => {
