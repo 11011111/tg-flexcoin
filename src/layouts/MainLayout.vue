@@ -16,8 +16,6 @@ const tg = window.Telegram.WebApp // init TelegramWebApp
 const router = useRouter()
 
 onBeforeMount(() => {
-  tg.expand() //full screen
-
   console.log(tg.themeParams)
 
   openWebApp(tg.initData) // Иначе - проходим авторизацию
