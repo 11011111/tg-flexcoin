@@ -8,7 +8,6 @@
     transition-prev="jump-right"
     transition-next="jump-left"
     swipeable
-    navigation
   )
     q-carousel-slide( v-for="(slide, idx) in onboardList" :key="idx" :name="idx")
       UiSlide(
@@ -25,10 +24,12 @@
             @click="nextFn(slide)"
             no-caps
           )
-    template(v-slot:navigation-icon="{index, active, btnProps, onClick }")
-      img.q-mr-sm(v-show="active" :style="'height: 10px; width: ' + activeImg.style +'px'" :src="activeImg.url" @click="onClick"  no-spinner)
-      img.q-mr-sm(v-show="index >= (slide + 1)" :src="staticImg" @click="onClick" style="height: 10px; width: 10px" no-spinner)
 
+
+  UiProgressbarPacman.nav-position(
+    :count-dots="onboardList.length"
+    :activeIndex="slide"
+  )
 </template>
 
 <script setup lang="ts">
@@ -47,6 +48,7 @@ import active4 from 'src/assets/dots/active4.svg'
 import active5 from 'src/assets/dots/active5.svg'
 import active6 from 'src/assets/dots/active6.svg'
 import staticImg from 'src/assets/dots/static.svg'
+import UiProgressbarPacman from 'components/ui/UiProgressbarPacman.vue'
 
 const { getOnboardingSlides } = profileState()
 const { onboardingList } = storeToRefs(profileState())
@@ -90,4 +92,6 @@ const nextFn = (idx: number) => {
   width: 100%
 .btn-mb
   margin-bottom: 70px
+.nav-position
+  margin-top: -80px
 </style>
