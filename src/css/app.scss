@@ -101,4 +101,9 @@ body{
     color: $dark;
   }
 
+  .btn-style {
+    border-radius: $border-radius;
+    padding: 12px !important;
+  }
+
 }

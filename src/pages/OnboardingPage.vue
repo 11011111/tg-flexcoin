@@ -1,29 +1,38 @@
 <template lang="pug">
-q-card.flex.justify-center.items-end.full-width(style="height: 100vh")
-  q-carousel.flex.justify-center.items-center.full-width(
+.flex.justify-center.items-center.full-width(style="height: 100vh")
+  q-carousel.flex.justify-center.items-center(
     style="height: auto"
     v-model="slide"
     control-color="primary"
+    transition-prev="jump-right"
+    transition-next="jump-left"
+    animated
     swipeable
     navigation
   )
-    q-carousel-slide( v-for="(slide, idx) in onboardingList" :key="idx" :name="idx")
+    q-carousel-slide( v-for="(slide, idx) in onboardList" :key="idx" :name="idx")
       UiSlide(
         :title="slide?.title"
         :urlPath="slide?.img_url"
         :prevText="slide?.subtitle"
       )
-      .row.q-py-lg.q-mb-lg.items-center
-        q-btn.full-width.button-text.btn-style(
-          :label="idx+1 === onboardingList.length ? 'Start' : 'Next'"
-          color="primary"
-          @click="nextFn(idx)"
-          no-caps
-        )
+    template(v-slot:control)
+      .full-width.q-px-lg
+        .row.items-center.btn-mb
+          q-btn.full-width.button-text.btn-style(
+            :label="slide+1 === onboardingList.length ? 'Start' : 'Next'"
+            color="primary"
+            @click="nextFn(slide)"
+            no-caps
+          )
+    template(v-slot:navigation-icon="{index, active, btnProps, onClick }")
+      q-img.q-mr-sm(v-if="active" :src="'https://flexcoin.sgp1.cdn.digitaloceanspaces.com/dots/active' + (slide + 1) + '.svg'" @click="onClick" :style="'height: 10px; width: ' + activeDots +'px'" no-spinner)
+      q-img.q-mr-sm(v-if="index >= (slide + 1)"  src="https://flexcoin.sgp1.cdn.digitaloceanspaces.com/dots/static.svg" @click="onClick" style="height: 10px; width: 10px" no-spinner)
+
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue'
+import { computed, onBeforeMount, ref } from 'vue'
 import UiSlide from 'components/ui/UiSlide.vue'
 import { profileState } from 'stores/profile'
 import { storeToRefs } from 'pinia'
@@ -40,8 +49,17 @@ onBeforeMount(async () => {
   await getOnboardingSlides()
 })
 
+const onboardList = computed(() => {
+  return onboardingList.value
+})
+
+const activeDots = computed(() => {
+  const dotsWidthPx = [10, 26, 42, 58, 74, 90]
+  return dotsWidthPx[slide.value]
+})
+
 const nextFn = (idx: number) => {
-  if (idx + 1 !== onboardingList.value.length) {
+  if (idx + 1 !== onboardList.value.length) {
     slide.value += 1
   } else {
     meRequest({ method: 'patch', params: { skip_onboarding: true } })
@@ -58,4 +76,6 @@ const nextFn = (idx: number) => {
 <style lang="sass">
 .q-carousel__slides-container
   width: 100%
+.btn-mb
+  margin-bottom: 70px
 </style>

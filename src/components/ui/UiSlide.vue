@@ -8,12 +8,24 @@ defineProps({
 
 <template lang="pug">
 .row.column.wrap
-  img.full-width(:src="urlPath" width="100%")
-  h1.text-center.margin-top-h1 {{ title }}
-  p(v-html="prevText").text-center.full-width
+  .img-block-style
+    img.full-width(:src="urlPath")
+  .text-block-style
+    h1.text-center.margin-top-h1 {{ title }}
+    p(v-html="prevText").text-center.full-width.q-px-lg
 </template>
 
 <style scoped lang="sass">
+.img-block-style
+  min-height: 358px
+  height: 358px
+  img
+    height: 100%
+
+.text-block-style
+  min-height: 185px
+
+
 .margin-top-h1
-  margin-top: 75px
+  margin-top: 55px
 </style>

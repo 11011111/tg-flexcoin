@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-page-container>
+    <q-page-container style="height: 100vh">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -16,14 +16,6 @@ const tg = window.Telegram.WebApp // init TelegramWebApp
 const router = useRouter()
 
 onBeforeMount(() => {
-  console.log(tg.themeParams)
-
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })
-
-import { useQuasar } from 'quasar'
-
-const $q = useQuasar()
-
-// $q.dark.set(true)
 </script>
