@@ -27,8 +27,8 @@
             no-caps
           )
     template(v-slot:navigation-icon="{index, active, btnProps, onClick }")
-      q-img.q-mr-sm(v-if="active" :src="activeImg" @click="onClick" :style="'height: 10px; width: ' + activeDots +'px'" no-spinner)
-      q-img.q-mr-sm(v-if="index >= (slide + 1)"  src="dots/static.svg" @click="onClick" style="height: 10px; width: 10px" no-spinner)
+      q-img.q-mr-sm(v-show="active" :src="activeImg" @click="onClick" :style="'height: 10px; width: ' + activeDots +'px'" no-spinner)
+      q-img.q-mr-sm(v-show="index >= (slide + 1)"  src="dots/static.svg" @click="onClick" style="height: 10px; width: 10px" no-spinner)
 
 </template>
 
