@@ -7,7 +7,6 @@
     control-color="primary"
     transition-prev="jump-right"
     transition-next="jump-left"
-    animated
     swipeable
     navigation
   )
