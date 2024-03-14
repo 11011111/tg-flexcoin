@@ -27,7 +27,7 @@
             no-caps
           )
     template(v-slot:navigation-icon="{index, active, btnProps, onClick }")
-      q-img.q-mr-sm(v-show="active" :src="activeImg" @click="onClick" :style="'height: 10px; width: ' + activeDots +'px'" no-spinner)
+      q-img.q-mr-sm(v-show="active" :style="'height: 10px; width: ' + activeImg.style +'px'" :src="activeImg.url" @click="onClick"  no-spinner)
       q-img.q-mr-sm(v-show="index >= (slide + 1)"  src="dots/static.svg" @click="onClick" style="height: 10px; width: 10px" no-spinner)
 
 </template>
@@ -55,12 +55,11 @@ const onboardList = computed(() => {
 })
 
 const activeImg = computed(() => {
-  return `dots/active${slide.value + 1}.svg` || 'dots/active1.svg'
-})
-
-const activeDots = computed(() => {
   const dotsWidthPx = [10, 26, 42, 58, 74, 90]
-  return dotsWidthPx[slide.value]
+  return {
+    url: `dots/active${slide.value + 1}.svg` || 'dots/active1.svg',
+    style: dotsWidthPx[slide.value]
+  }
 })
 
 const nextFn = (idx: number) => {
