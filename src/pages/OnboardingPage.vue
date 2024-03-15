@@ -1,5 +1,5 @@
 <template lang="pug">
-.row.full-width.justify-center.content-around( v-if="onboardingList.length" style="height: 100%")
+.row.full-width.justify-center.content-around(v-if="onboardingList.length" style="height: 100%")
   .row.full-width
     q-carousel.full-width(
       style="height: auto"
@@ -52,15 +52,25 @@ import { meRequest } from 'src/common/requests'
 import { useRouter } from 'vue-router'
 import { links } from 'src/common/routerLinks'
 import UiProgressbarPacman from 'components/ui/UiProgressbarPacman.vue'
+import { useQuasar, QSpinner } from 'quasar'
 
 const { getOnboardingSlides } = profileState()
 const { onboardingList } = storeToRefs(profileState())
 const slide = ref(0)
 const router = useRouter()
+const $q = useQuasar()
 
 onBeforeMount(async () => {
+  // await loader()
   await getOnboardingSlides()
 })
+
+// const loader = () => {
+//   $q.loading.show({
+//     spinner: QSpinner,
+//     spinnerColor: 'grey'
+//   })
+// }
 
 const onboardList = computed(() => {
   return onboardingList.value
