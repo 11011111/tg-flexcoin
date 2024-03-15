@@ -15,19 +15,18 @@
         :urlPath="slide?.img_url"
         :prevText="slide?.subtitle"
       )
-    template(v-slot:control)
-      .full-width.q-px-lg
-        .row.items-center.btn-mb
-          q-btn.full-width.button-text.btn-style(
-            :label="slide+1 === onboardingList.length ? 'Start' : 'Next'"
-            color="primary"
-            @click="nextFn(slide)"
-            no-caps
-          )
-      UiProgressbarPacman.nav-position(
-        :count-dots="onboardList.length"
-        :activeIndex="slide"
+  .full-width.q-px-lg
+    .row.items-center.btn-mb
+      q-btn.full-width.button-text.btn-style(
+        :label="slide+1 === onboardingList.length ? 'Start' : 'Next'"
+        color="primary"
+        @click="nextFn(slide)"
+        no-caps
       )
+  UiProgressbarPacman.nav-position(
+    :count-dots="onboardList.length"
+    :activeIndex="slide"
+  )
 
 </template>
 
