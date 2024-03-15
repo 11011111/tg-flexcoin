@@ -1,32 +1,45 @@
 <template lang="pug">
-.flex.justify-center.items-center.full-width(style="height: 100vh" v-if="onboardingList.length" )
-  q-carousel.flex.justify-center.items-center(
-
-    style="height: auto"
-    v-model="slide"
-    control-color="primary"
-    transition-prev="jump-right"
-    transition-next="jump-left"
-    swipeable
-  )
-    q-carousel-slide( v-for="(slide, idx) in onboardList" :key="idx" :name="idx")
-      UiSlide(
-        :title="slide?.title"
-        :urlPath="slide?.img_url"
-        :prevText="slide?.subtitle"
-      )
-  .full-width.q-px-lg
-    .row.items-center.btn-mb
-      q-btn.full-width.button-text.btn-style(
-        :label="slide+1 === onboardingList.length ? 'Start' : 'Next'"
-        color="primary"
-        @click="nextFn(slide)"
-        no-caps
-      )
-  UiProgressbarPacman.nav-position(
-    :count-dots="onboardList.length"
-    :activeIndex="slide"
-  )
+.row.full-width.justify-center.content-around( v-if="onboardingList.length" style="height: 100%")
+  .row.full-width
+    q-carousel.full-width(
+      style="height: auto"
+      v-model="slide"
+      control-color="primary"
+      transition-prev="jump-right"
+      transition-next="jump-left"
+      swipeable
+    )
+      q-carousel-slide( v-for="(slide, idx) in onboardList" :key="idx" :name="idx")
+        UiSlide(
+          :url-path="slide?.img_url"
+        )
+  .row.full-width
+    q-carousel.full-width(
+      style="height: auto"
+      v-model="slide"
+      control-color="primary"
+      transition-prev="jump-right"
+      transition-next="jump-left"
+      swipeable
+    )
+      q-carousel-slide( v-for="(slide, idx) in onboardList" :key="idx" :name="idx")
+        UiSlide(
+          :title="slide?.title"
+          :prevText="slide?.subtitle"
+        )
+    .row.wrap.q-px-lg.full-width
+      .row.full-width.justify-center
+        q-btn.button-text.btn-style(
+          :label="slide+1 === onboardingList.length ? 'Start' : 'Next'"
+          color="primary"
+          @click="nextFn(slide)"
+          no-caps
+        )
+      .row.full-width.justify-center
+        UiProgressbarPacman.q-my-lg(
+          :count-dots="onboardList.length"
+          :activeIndex="slide"
+        )
 
 </template>
 
@@ -71,8 +84,7 @@ const nextFn = (idx: number) => {
 <style lang="sass">
 .q-carousel__slides-container
   width: 100%
-.btn-mb
-  margin-bottom: 60px
-.nav-position
-  margin-top: -80px
+
+.btn-style
+  width: 90%
 </style>

@@ -1,31 +1,41 @@
 <script setup lang="ts">
 defineProps({
-  urlPath: String,
-  title: String,
-  prevText: String
+  urlPath: {
+    type: String,
+    default: ''
+  },
+  title: {
+    type: String,
+    default: ''
+  },
+  prevText: {
+    type: String,
+    default: ''
+  }
 })
 </script>
 
 <template lang="pug">
-.row.column.wrap
-  .img-block-style
-    q-img.full-width(:src="urlPath"  )
-  .text-block-style
-    h1.text-center.margin-top-h1.q-px-lg {{ title }}
-    p(v-html="prevText").text-center.full-width.q-px-lg
+.row.wrap.justify-between
+  .row.full-width.justify-center(v-if="urlPath")
+    img.img-block-style(:src="urlPath" loading="lazy")
+  .row.full-width
+    .row.full-width.justify-center.content-start.text-block-style(v-if="title")
+      h1.text-center.margin-top-h1.q-px-lg {{ title }}
+      p(v-html="prevText").text-center.full-width.q-px-lg
 </template>
 
 <style scoped lang="sass">
 .img-block-style
-  min-height: 358px
-  height: 358px
-  img
-    height: 100%
+  width: 100% !important
+  height: auto
+  margin: 5% 0
 
 .text-block-style
-  min-height: 185px
+  margin: 0
+  min-height: 128px
 
-
-.margin-top-h1
-  margin-top: 55px
+  h1
+    margin-top: 0
+    margin-bottom: 10px
 </style>
