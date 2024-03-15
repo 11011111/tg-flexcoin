@@ -27,10 +27,7 @@ defineProps({
 
 <style scoped lang="sass">
 .img-block-style
-  width: 100% !important
-  min-height: 350px
   height: auto
-  margin: 5% 0
 
 .text-block-style
   margin: 0
@@ -39,4 +36,17 @@ defineProps({
   h1
     margin-top: 0
     margin-bottom: 10px
+
+
+@media (max-width: $sm-breakpoint)
+  .img-block-style
+    //width: auto !important
+    height: 650px
+    margin: 5% 0
+
+@media (max-width: $xs-breakpoint)
+  .img-block-style
+    //width: auto!important
+    height: 350px
+    margin: 5% 0
 </style>
