@@ -28,7 +28,7 @@ defineProps({
 <style scoped lang="sass">
 .img-block-style
   width: 100% !important
-  min-height: 350px
+  min-height: 100%
   height: auto
   margin: 5% 0
 
