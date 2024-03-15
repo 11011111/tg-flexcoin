@@ -18,7 +18,7 @@ defineProps({
 <template lang="pug">
 .row.wrap.justify-between
   .row.full-width.justify-center(v-if="urlPath")
-    img.img-block-style(:src="urlPath" loading="lazy")
+    q-img.img-block-style(:src="urlPath" loading="lazy")
   .row.full-width
     .row.full-width.justify-center.content-start.text-block-style(v-if="title")
       h1.text-center.margin-top-h1.q-px-lg {{ title }}
