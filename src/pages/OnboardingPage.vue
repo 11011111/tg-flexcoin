@@ -9,9 +9,9 @@
       transition-next="jump-left"
       swipeable
     )
-      q-carousel-slide( v-for="(slide, idx) in onboardList" :key="idx" :name="idx")
+      q-carousel-slide( v-for="(url, idx) in bgs" :key="idx" :name="idx")
         UiSlide(
-          :url-path="slide?.img_url"
+          :url-path="url"
         )
   .row.full-width
     q-carousel.full-width(
@@ -54,6 +54,21 @@ import { links } from 'src/common/routerLinks'
 import UiProgressbarPacman from 'components/ui/UiProgressbarPacman.vue'
 import { useQuasar, QSpinner } from 'quasar'
 
+// import bg1 from 'https://flexcoin.sgp1.cdn.digitaloceanspaces.com/media/onboarding_one.svg'
+// import bg2 from 'https://flexcoin.sgp1.cdn.digitaloceanspaces.com/media/onboarding_two.svg'
+// import bg3 from 'https://flexcoin.sgp1.cdn.digitaloceanspaces.com/media/onboarding_three.svg'
+// import bg4 from 'https://flexcoin.sgp1.cdn.digitaloceanspaces.com/media/onboarding_four.svg'
+// import bg5 from 'https://flexcoin.sgp1.cdn.digitaloceanspaces.com/media/onboarding_five.svg'
+// import bg6 from 'https://flexcoin.sgp1.cdn.digitaloceanspaces.com/media/onboarding_six.svg'
+
+import bg1 from 'src/assets/bgOnboarding/onboarding_one.svg'
+import bg2 from 'src/assets/bgOnboarding/onboarding_two.svg'
+import bg3 from 'src/assets/bgOnboarding/onboarding_three.svg'
+import bg4 from 'src/assets/bgOnboarding/onboarding_four.svg'
+import bg5 from 'src/assets/bgOnboarding/onboarding_five.svg'
+import bg6 from 'src/assets/bgOnboarding/onboarding_six.svg'
+
+const bgs = [bg1, bg2, bg3, bg4, bg5, bg6]
 const { getOnboardingSlides } = profileState()
 const { onboardingList } = storeToRefs(profileState())
 const slide = ref(0)
