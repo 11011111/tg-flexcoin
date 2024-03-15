@@ -24,12 +24,11 @@
             @click="nextFn(slide)"
             no-caps
           )
+      UiProgressbarPacman.nav-position(
+        :count-dots="onboardList.length"
+        :activeIndex="slide"
+      )
 
-
-  UiProgressbarPacman.nav-position(
-    :count-dots="onboardList.length"
-    :activeIndex="slide"
-  )
 </template>
 
 <script setup lang="ts">
@@ -40,14 +39,6 @@ import { storeToRefs } from 'pinia'
 import { meRequest } from 'src/common/requests'
 import { useRouter } from 'vue-router'
 import { links } from 'src/common/routerLinks'
-
-import active1 from 'src/assets/dots/active1.svg'
-import active2 from 'src/assets/dots/active2.svg'
-import active3 from 'src/assets/dots/active3.svg'
-import active4 from 'src/assets/dots/active4.svg'
-import active5 from 'src/assets/dots/active5.svg'
-import active6 from 'src/assets/dots/active6.svg'
-import staticImg from 'src/assets/dots/static.svg'
 import UiProgressbarPacman from 'components/ui/UiProgressbarPacman.vue'
 
 const { getOnboardingSlides } = profileState()
@@ -61,15 +52,6 @@ onBeforeMount(async () => {
 
 const onboardList = computed(() => {
   return onboardingList.value
-})
-
-const activeImg = computed(() => {
-  const nameImg = [active1, active2, active3, active4, active5, active6]
-  const dotsWidthPx = [10, 26, 42, 58, 74, 90]
-  return {
-    url: nameImg[slide.value],
-    style: dotsWidthPx[slide.value]
-  }
 })
 
 const nextFn = (idx: number) => {
@@ -91,7 +73,7 @@ const nextFn = (idx: number) => {
 .q-carousel__slides-container
   width: 100%
 .btn-mb
-  margin-bottom: 70px
+  margin-bottom: 60px
 .nav-position
   margin-top: -80px
 </style>
