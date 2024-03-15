@@ -40,7 +40,6 @@
           :count-dots="onboardList.length"
           :activeIndex="slide"
         )
-
 </template>
 
 <script setup lang="ts">
