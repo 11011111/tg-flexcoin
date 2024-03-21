@@ -1,7 +1,5 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { api } from 'boot/axios'
-import { apiLinks } from 'src/common/routerLinks'
 import { currenciesRequest } from 'src/common/requests'
 
 export const settingsState = defineStore('settingsState', () => {

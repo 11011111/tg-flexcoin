@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 defineProps({ modelValue: String, options: [Array, Object] })
 
+const imgPath = process.env.DEFAULT_URL_PATH
 const emit = defineEmits(['update:modelValue'])
 const dialogWindow = ref(false)
 
@@ -17,8 +18,9 @@ function changeCurrency(currency: string) {
 <template lang="pug">
 q-btn.modern-btn-select(
   :label="modelValue"
-  icon-right="img:https://flexcoin.sgp1.cdn.digitaloceanspaces.com/media/unfold_more_horizontal.svg"
+  :icon-right="`img:${imgPath}unfold_more_horizontal.svg`"
   @click="dialogWindow = !dialogWindow"
+  unelevated
   flat
 )
 q-dialog(
@@ -29,9 +31,9 @@ q-dialog(
     q-card-section.no-padding
       .row.items-center.no-wrap
         .col
-          h2.text-center.text-dark Select the currency
+          h2.text-center.text-dark.q-pt-md Select the currency
         .col-auto
-          q-icon.q-pb-md(name="bi-x" size="24px" @click="dialogWindow = !dialogWindow")
+          q-icon.q-pt-md(:name="`img:${imgPath}close.svg`" size="24px" @click="dialogWindow = !dialogWindow")
     q-card-section.q-pb-lg
       q-list(v-for="(currencyItem, idx) in options" :key="idx" dense)
         q-item.row.justify-between.no-padding(v-ripple)
@@ -40,12 +42,12 @@ q-dialog(
             :class="currencyItem?.id === modelValue ? 'text-primary' : 'color-currency-select'"
             ) {{ currencyItem.id }} ({{ currencyItem?.name }})
           q-item-section(v-if="currencyItem?.id === modelValue" side)
-            q-icon(name="img:https://flexcoin.sgp1.cdn.digitaloceanspaces.com/media/check.svg" color="primary")
+            q-icon(:name="`img:${imgPath}check.svg`" color="primary")
 </template>
 
 <style scoped lang="sass">
 .modern-btn-select
-  border-left: 1px solid $light-gray
+  border-left: 1px solid $light-grey
   border-radius: 0
   font-weight: 700
   color: $dark
