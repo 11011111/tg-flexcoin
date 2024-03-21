@@ -35,13 +35,14 @@ body{
   //}
 
 
-
-  background: var(--tg-theme-bg-color) !important;
-  color: var(--tg-theme-text-color);
+  background: $secondary;
+  //background: var(--tg-theme-bg-color) !important;
+  //color: var(--tg-theme-text-color);
 
   .q-card {
-    background: var(--tg-theme-bg-color) !important;;
-    color: var(--tg-theme-text-color);
+    background: $secondary;
+    //background: var(--tg-theme-bg-color) !important;;
+    //color: var(--tg-theme-text-color);
   }
 
   .q-carousel {
