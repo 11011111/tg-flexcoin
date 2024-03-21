@@ -31,10 +31,10 @@ api.interceptors.response.use(
   },
   (error: AxiosError<any>) => {
     const { liveUpdate } = storeToRefs(settingsState())
-
+    console.log(error.response)
     switch (error.response?.status) {
-      case 400:
-        return Promise.reject(error)
+      // case 400:
+      //   return Promise.reject(error)
       case 401:
         /*
          * В случае получения 401 ошибки в любом случае переадресовываем на страницу входа в приложение
@@ -61,15 +61,15 @@ api.interceptors.response.use(
         Notify.create(error?.response?.data?.detail || 'Ошибка сервера')
         break
       case 502:
-      case undefined:
-        Notify.create('Сервис временно недоступен')
-        break
+      // case undefined:
+      //   Notify.create('Сервис временно недоступен')
+      //   break
       default:
         /*
          * На случай непредвиденных ошибок
          * */
         console.error(error?.response?.data)
-        Notify.create(error?.response?.data?.detail || 'Что-то пошло не так...')
+      // Notify.create(error?.response?.data?.detail || 'Что-то пошло не так...')
     }
 
     return Promise.reject(error)

@@ -28,5 +28,8 @@ export const apiLinks: IApiLinks = {
   ONBOARDING: {
     list: '/bot/onboarding',
     retrieve: (id) => `/bot/onboarding/${id}`
+  },
+  QR: {
+    list: '/bot/scan/qr'
   }
 }

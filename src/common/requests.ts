@@ -48,3 +48,6 @@ export const onboardingRequest = (incomingData?: IIncomingData) =>
 // Получить Me
 export const meRequest = (incomingData?: IIncomingData) =>
   request({ ...incomingData, link: apiLinks.ME })
+// Получить Me
+export const QRRequest = (incomingData?: IIncomingData) =>
+  request({ ...incomingData, link: apiLinks.QR })

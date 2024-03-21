@@ -33,6 +33,7 @@
           :label="slide+1 === onboardingList.length ? 'Start' : 'Next'"
           color="primary"
           @click="nextFn(slide)"
+          unelevated
           no-caps
         )
       .row.full-width.justify-center

@@ -65,7 +65,8 @@ body{
   h2 {
     font-size: 20px;
     font-weight: 700;
-    line-height: 24px;
+    line-height: 18px;
+    margin: 0;
   }
 
   .button-text {
@@ -94,7 +95,7 @@ body{
 
   .q-field--outlined .q-field__control {
     border-radius: $border-radius;
-    background: $light;
+    background: $bg;
   }
 
   .text-dark {
@@ -104,6 +105,20 @@ body{
   .btn-style {
     border-radius: $border-radius;
     padding: 12px !important;
+
+    &:active {
+      background: #1948C1 !important;
+    }
+    &.history {
+      &:active {
+        background: $grey !important;
+      }
+    }
+  }
+
+  .bg-bg {
+    background: $bg !important;
+
   }
 
 }

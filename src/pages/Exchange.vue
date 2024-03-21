@@ -1,7 +1,7 @@
 <template lang="pug">
 q-card.q-pa-lg
   .row.justify-center
-    img(:src="`${imgPath}exchange.svg`")
+    img(:src="`${imgPath}bg_exchange.svg`")
   h1.text-center Exchange to USDT
 
   .row
