@@ -46,8 +46,9 @@ body{
   }
 
   .q-carousel {
-    background: var(--tg-theme-bg-color);
-    color: var(--tg-theme-text-color);
+    background: $secondary;
+    //background: var(--tg-theme-bg-color);
+    //color: var(--tg-theme-text-color);
   }
 
   .q-field__native, .q-field__prefix, .q-field__suffix, .q-field__input {

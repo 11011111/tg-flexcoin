@@ -31,7 +31,7 @@ q-dialog(
     q-card-section.no-padding
       .row.items-center.no-wrap
         .col
-          h2.text-center.text-dark.q-pt-md Select the currency
+          h2.text-center.q-pt-md Select the currency
         .col-auto
           q-icon.q-pt-md(:name="`img:${imgPath}close.svg`" size="24px" @click="dialogWindow = !dialogWindow")
     q-card-section.q-pb-lg
