@@ -42,7 +42,7 @@ watch(fileUpload, (file) => {
         if (res.data.ok) router.push({ name: links.EXCHANGE.name })
       })
       .catch((err) => {
-        console.log(err?.response)
+        console.log(err)
         dialogWindow.value = true
         fileUpload.value = null
         loaderUploadFile.value = false
