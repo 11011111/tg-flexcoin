@@ -6,12 +6,12 @@ const imgPath = process.env.DEFAULT_URL_PATH
 
 <template lang="pug">
 q-card.row.text-center.justify-center.q-pa-lg.content-between(style="height:100vh")
-  .row.full-width
-    .row.full-width.justify-center.content-start.q-mt-lg
+  .flex.column.justify-center.content-center
+    .flex.column.justify-center.content-center.q-mt-lg.mt-bg
       img(:src="`${imgPath}qr.svg`")
-    .row.text-center.justify-center.q-mt-lg
-      h1.full-width.q-px-lg Welcome to Flexcoin!
-      p.q-px-lg The easiest way to pay by QR codes in cafes, restaurants or any service
+    .flex.column.justify-center.content-center.q-mt-lg
+      h1.text-center.q-px-lg Welcome to Flexcoin!
+      p.text-center.q-px-lg The easiest way to pay by QR codes in cafes, restaurants or any service
 
   .row.full-width
     .row.full-width.q-pb-lg
@@ -27,4 +27,7 @@ q-card.row.text-center.justify-center.q-pa-lg.content-between(style="height:100v
         UiUploaderBtn(:requestURL="apiLinks.QR.list")
 </template>
 
-<style scoped lang="sass"></style>
+<style scoped lang="sass">
+.mt-bg
+  margin-top: 25%
+</style>
