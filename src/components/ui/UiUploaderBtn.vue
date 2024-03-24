@@ -35,9 +35,8 @@ watch(fileUpload, (file) => {
     const fileSend = new FormData()
     fileSend.append('file', file)
 
-    // QRRequest({ method: 'post', params: fileSend })
     api
-      .post(props.requestURL, fileSend, {})
+      .post(props.requestURL, fileSend)
       .then((res) => {
         if (res.data.ok) router.push({ name: links.EXCHANGE.name })
       })
@@ -48,7 +47,6 @@ watch(fileUpload, (file) => {
         loaderUploadFile.value = false
       })
   }
-  // console.log(file)
 })
 </script>
 

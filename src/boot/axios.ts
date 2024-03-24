@@ -69,7 +69,7 @@ api.interceptors.response.use(
          * На случай непредвиденных ошибок
          * */
         console.error(error?.response?.data)
-      // Notify.create(error?.response?.data?.detail || 'Что-то пошло не так...')
+        Notify.create(error?.response?.data?.detail || 'Что-то пошло не так...')
     }
 
     return Promise.reject(error)
