@@ -26,6 +26,7 @@ export const settingsState = defineStore('settingsState', () => {
 
   // Get currency exchange
   async function getPrice(currency: string, amount: number) {
+    loadingCurrency.value = true
     await priceRequest({
       method: methods.post,
       params: { currency, amount }

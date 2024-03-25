@@ -21,10 +21,10 @@ q-card.q-pa-lg.flex(style="min-height: 100%")
         q-input(
           v-model="amountCryptoCoins"
           placeholder="0 USDT"
-          readonly
           :loading="loadingCurrency"
-          :suffix="loadingCurrency ? '' : `1 USDT = ${selectedCurrency?.exchange_rate} ${selectedCurrency?.currency}`"
+          :suffix="suffixAmountCryptoCoins"
           outlined
+          readonly
         )
   .row.justify-center.full-width.q-px-sm.q-mb-lg.content-end
     q-btn.button-text.btn-style.full-width(
@@ -64,7 +64,7 @@ const updCurrency = (currency: string) => {
 
 // Ввод суммы для обмена
 const enterSumFn = (amount: number) => {
-  getPrice(selectedCurrency.value?.currency, Number(amount))
+  getPrice(selectedCurrency.value?.currency, Number(amount) || 1)
 }
 
 const amountCryptoCoins = computed(() => {
@@ -72,6 +72,19 @@ const amountCryptoCoins = computed(() => {
     return selectedCurrency.value?.amount + ' USDT'
   } else {
     return amountCoin.value
+  }
+})
+
+const suffixAmountCryptoCoins = computed(() => {
+  if (selectedCurrency.value) {
+    console.log(selectedCurrency.value)
+    if (loadingCurrency.value) {
+      return ''
+    } else {
+      return `1 USDT = ${selectedCurrency.value?.exchange_rate} ${selectedCurrency.value?.currency}`
+    }
+  } else {
+    return ''
   }
 })
 </script>
