@@ -11,7 +11,6 @@ q-card.q-pa-lg.flex(style="min-height: 100%")
         v-model="amountCurrency"
         :options="currencyList"
         placeholder="How much"
-        debounce="200"
         @update:model-value="enterSumFn"
         :select-model="selectedCurrency?.currency"
         @select-model="updCurrency"
@@ -46,11 +45,14 @@ import { links } from 'src/common/routerLinks'
 import { useRouter } from 'vue-router'
 
 const { getCurrency, getPrice } = settingsState()
-const { currencyList, selectedCurrency, loadingCurrency } = storeToRefs(
-  settingsState()
-)
-const amountCurrency = ref<number | null>(null)
-const amountCoin = ref<number | null>(null)
+const {
+  currencyList,
+  selectedCurrency,
+  loadingCurrency,
+  amountCurrency,
+  amountCoin
+} = storeToRefs(settingsState())
+
 const router = useRouter()
 
 onMounted(() => {

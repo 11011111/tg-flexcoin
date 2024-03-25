@@ -6,7 +6,7 @@
     :placeholder="placeholder"
     @update:model-value="keyUpFn"
     type="number"
-
+    debounce="300"
     outlined )
     template(v-slot:append )
       UiSelectModern(v-model="selectedValue" :options="options")

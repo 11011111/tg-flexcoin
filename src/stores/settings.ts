@@ -7,6 +7,8 @@ export const settingsState = defineStore('settingsState', () => {
   const currencyList = ref<IModelCurrency>() // Список доступных валют
   const selectedCurrency = ref<IModelExchange>() // Курс выбранной валюты
   const loadingCurrency = ref(false)
+  const amountCurrency = ref<number | null>(null)
+  const amountCoin = ref<number | null>(null)
 
   // Get Currency
   async function getCurrency() {
@@ -47,6 +49,8 @@ export const settingsState = defineStore('settingsState', () => {
     currencyList,
     selectedCurrency,
     loadingCurrency,
+    amountCurrency,
+    amountCoin,
 
     getCurrency,
     getPrice
