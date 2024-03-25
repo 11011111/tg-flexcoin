@@ -38,7 +38,7 @@ q-card.q-pa-lg.flex(style="min-height: 100%")
 
 <script setup lang="ts">
 import UiInput from 'components/ui/UiInput.vue'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted } from 'vue'
 import { settingsState } from 'stores/settings'
 import { storeToRefs } from 'pinia'
 import { links } from 'src/common/routerLinks'
@@ -79,7 +79,6 @@ const amountCryptoCoins = computed(() => {
 
 const suffixAmountCryptoCoins = computed(() => {
   if (selectedCurrency.value) {
-    console.log(selectedCurrency.value)
     if (loadingCurrency.value) {
       return ''
     } else {

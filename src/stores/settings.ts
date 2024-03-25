@@ -6,7 +6,7 @@ export const settingsState = defineStore('settingsState', () => {
   const liveUpdate = ref(false)
   const currencyList = ref<IModelCurrency>() // Список доступных валют
   const selectedCurrency = ref<IModelExchange>() // Курс выбранной валюты
-  const loadingCurrency = ref(false)
+  const loadingCurrency = ref(true)
   const amountCurrency = ref<number | null>(null)
   const amountCoin = ref<number | null>(null)
 
