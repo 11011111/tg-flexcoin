@@ -48,6 +48,9 @@ export const onboardingRequest = (incomingData?: IIncomingData) =>
 // Получить Me
 export const meRequest = (incomingData?: IIncomingData) =>
   request({ ...incomingData, link: apiLinks.ME })
-// Получить Me
+// Сканирование QR-кода
 export const QRRequest = (incomingData?: IIncomingData) =>
   request({ ...incomingData, link: apiLinks.QR })
+// Конвертирование валюты в USDT
+export const priceRequest = (incomingData?: IIncomingData) =>
+  request({ ...incomingData, link: apiLinks.PRICE })

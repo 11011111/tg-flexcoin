@@ -31,5 +31,8 @@ export const apiLinks: IApiLinks = {
   },
   QR: {
     list: '/bot/scan/qr'
+  },
+  PRICE: {
+    list: '/bot/exchange/price'
   }
 }

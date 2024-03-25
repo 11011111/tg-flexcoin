@@ -60,3 +60,14 @@ declare interface IModelUser {
 declare interface IRequestData extends IIncomingData {
   link: IApiRouteParams
 }
+
+declare interface IModelCurrency {
+  id: string
+  name: string
+}
+
+declare interface IModelExchange {
+  amount: number
+  currency: string
+  exchange_rate: number
+}
