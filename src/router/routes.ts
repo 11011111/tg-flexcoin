@@ -21,6 +21,11 @@ const routes: RouteRecordRaw[] = [
         path: links.ONBOARDING.path,
         name: links.ONBOARDING.name,
         component: () => import('pages/OnboardingPage.vue')
+      },
+      {
+        path: links.PAYMENT_DETAILS.path,
+        name: links.PAYMENT_DETAILS.name,
+        component: () => import('pages/PaymentDetailsPage.vue')
       }
     ]
   },

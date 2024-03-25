@@ -10,6 +10,10 @@ export const links: ILinks = {
   SCAN: {
     path: 'scan',
     name: 'scan'
+  },
+  PAYMENT_DETAILS: {
+    path: 'payment_details',
+    name: 'payment_details'
   }
 }
 

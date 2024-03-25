@@ -5,36 +5,39 @@
     :model-value="modelValue"
     :placeholder="placeholder"
     @update:model-value="keyUpFn"
-    :suffix="suffix"
+    type="number"
+
     outlined )
-    template(v-slot:append v-if="haveAppendSelect" )
-      UiSelectModern(v-model="selectModel" :options="options" )
+    template(v-slot:append )
+      UiSelectModern(v-model="selectedValue" :options="options")
 
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import UiSelectModern from 'components/ui/UiSelectModern.vue'
+import { computed } from 'vue'
 
 const props = defineProps({
   label: String,
   modelValue: String,
   placeholder: String,
-  suffix: String,
   options: [Array, Object],
-
-  //отображение выпадающего списка справа
-  haveAppendSelect: Boolean
+  selectModel: {
+    type: String,
+    default: 'THB'
+  }
 })
 
-const emit = defineEmits(['update:modelValue'])
-
-const selectModel = ref('THB')
-
+const emit = defineEmits(['update:modelValue', 'selectModel'])
 const keyUpFn = (evt: string) => emit('update:modelValue', evt)
-</script>
 
-<style scoped lang="sass">
-.label-text
-  color: #979797
-</style>
+const selectedValue = computed({
+  get() {
+    return props.selectModel
+  },
+  set(value) {
+    console.log(value)
+    emit('selectModel', value)
+  }
+})
+</script>

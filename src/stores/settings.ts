@@ -6,9 +6,11 @@ export const settingsState = defineStore('settingsState', () => {
   const liveUpdate = ref(false)
   const currencyList = ref<IModelCurrency>() // Список доступных валют
   const selectedCurrency = ref<IModelExchange>() // Курс выбранной валюты
+  const loadingCurrency = ref(false)
 
   // Get Currency
   async function getCurrency() {
+    loadingCurrency.value = true
     await currenciesRequest()
       .then((res) => {
         currencyList.value = res.data.items
@@ -16,6 +18,9 @@ export const settingsState = defineStore('settingsState', () => {
       })
       .catch((err) => {
         console.log(err)
+      })
+      .finally(() => {
+        loadingCurrency.value = false
       })
   }
 
@@ -31,13 +36,18 @@ export const settingsState = defineStore('settingsState', () => {
       .catch((err) => {
         console.log(err.response)
       })
+      .finally(() => {
+        loadingCurrency.value = false
+      })
   }
 
   return {
     liveUpdate,
     currencyList,
     selectedCurrency,
+    loadingCurrency,
 
-    getCurrency
+    getCurrency,
+    getPrice
   }
 })

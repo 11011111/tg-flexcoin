@@ -83,6 +83,10 @@ body{
     line-height: 16px;
   }
 
+  .label-text {
+    color: #979797
+  }
+
   p {
     font-size: 17px;
     font-weight: 500;
@@ -120,7 +124,16 @@ body{
 
   .bg-bg {
     background: $bg !important;
+  }
 
+  .q-field{
+    &.q-field--readonly {
+      .q-field__control {
+        &:before {
+          border-style: solid;
+        }
+      }
+    }
   }
 
 }
