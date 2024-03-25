@@ -25,6 +25,14 @@ q-dialog(
       .row.justify-center
         p.text-center.q-px-sm(v-if="desc") {{ desc }}
         img.text-center.q-px-lg.q-mt-md(v-if="nameImg" :src="`${imgPath}${nameImg}`")
+    .row.justify-center.q-px-lg.q-pb-lg
+      q-btn.button-text.btn-style.full-width(
+        label="Ok"
+        color="primary"
+        v-close-popup
+        unelevated
+        no-caps
+      )
 </template>
 
 <style scoped lang="sass">
