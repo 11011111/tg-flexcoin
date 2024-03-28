@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, watch } from 'vue'
 import { profileState } from 'stores/profile'
 import { useRoute, useRouter } from 'vue-router'
 import UiErrorBottom from 'components/ui/UiErrorBottom.vue'
@@ -26,18 +26,23 @@ const tg = window.Telegram.WebApp // init TelegramWebApp
 const route = useRoute()
 const router = useRouter()
 
-if (route.name === 'scan' || 'onboarding') {
-  tg.BackButton.hide()
-} else {
-  tg.BackButton.show()
-}
+const backBtnRouteNameList = ['scan', 'onboarding']
 
 tg.BackButton.onClick(() => {
-  if (route.name !== 'scan' || 'onboarding') {
-    router.back()
-  }
+  router.back()
 })
 onBeforeMount(() => {
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })
+
+watch(
+  () => route.name,
+  async () => {
+    if (backBtnRouteNameList.includes(route.name)) {
+      tg.BackButton.hide()
+    } else {
+      tg.BackButton.show()
+    }
+  }
+)
 </script>
