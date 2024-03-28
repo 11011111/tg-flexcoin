@@ -26,7 +26,9 @@ const tg = window.Telegram.WebApp // init TelegramWebApp
 const route = useRoute()
 const router = useRouter()
 
-if (route.name !== 'scan' || 'onboarding') {
+if (route.name === 'scan' || 'onboarding') {
+  tg.BackButton.hide()
+} else {
   tg.BackButton.show()
 }
 
