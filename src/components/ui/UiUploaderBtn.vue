@@ -17,7 +17,7 @@ const router = useRouter()
 const fileUpload = ref(null)
 const refFileUpload = ref(null)
 const loaderUploadFile = ref(false)
-
+const tg = window.Telegram.WebApp // init TelegramWebApp
 // Инициируется вызов input=file
 const clickBtn = () => {
   refFileUpload.value.pickFiles()
@@ -25,20 +25,23 @@ const clickBtn = () => {
 
 // CUD файла
 watch(fileUpload, (file) => {
+  // tg.showAlert('watch' + window.location.href)
   if (file) {
     loaderUploadFile.value = true
     const fileSend = new FormData()
     fileSend.append('file', file)
-
+    // tg.showAlert('if file' + window.location.href)
     api
       .post(props.requestURL, fileSend)
       .then((res) => {
         if (res.data.content) {
+          // tg.showAlert('200' + window.location.href)
           qrContent.value = res.data.content
           router.push({ name: links.EXCHANGE.name })
         }
       })
       .catch((err) => {
+        // tg.showAlert('error' + window.location.href)
         console.log(err.response)
         errorDialogBottom.value.isShow = true
         errorDialogBottom.value.desc = err.response.data.error
