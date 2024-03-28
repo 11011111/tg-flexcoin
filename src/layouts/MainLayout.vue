@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import { onBeforeMount } from 'vue'
 import { profileState } from 'stores/profile'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import UiErrorBottom from 'components/ui/UiErrorBottom.vue'
 import { storeToRefs } from 'pinia'
 import { settingsState } from 'stores/settings'
@@ -23,12 +23,17 @@ import { settingsState } from 'stores/settings'
 const { openWebApp } = profileState()
 const { errorDialogBottom } = storeToRefs(settingsState())
 const tg = window.Telegram.WebApp // init TelegramWebApp
+const route = useRoute()
 const router = useRouter()
 
-tg.BackButton.show()
-tg.BackButton.onClick(() => {
-  history.back()
-})
+if (route.name !== 'scan' || 'onboarding') {
+  tg.BackButton.show()
+  tg.BackButton.onClick(() => {
+    router.back()
+  })
+}
+// console.log(route)
+tg.showAlert(window.location.href)
 // tg.openTelegramLink(window.location.href)
 
 onBeforeMount(() => {
