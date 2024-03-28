@@ -26,6 +26,9 @@ const tg = window.Telegram.WebApp // init TelegramWebApp
 const router = useRouter()
 
 tg.BackButton.show()
+tg.BackButton.onClick(() => {
+  history.back()
+})
 
 onBeforeMount(() => {
   openWebApp(tg.initData) // Иначе - проходим авторизацию
