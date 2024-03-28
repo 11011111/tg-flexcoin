@@ -25,6 +25,8 @@ const { errorDialogBottom } = storeToRefs(settingsState())
 const tg = window.Telegram.WebApp // init TelegramWebApp
 const router = useRouter()
 
+tg.BackButton.show()
+
 onBeforeMount(() => {
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })
