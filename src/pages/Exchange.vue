@@ -16,7 +16,7 @@ q-card.q-pa-lg.flex(style="min-height: 100%")
         @select-model="updCurrency"
       )
       .row.flex.column.full-width
-        span.label-text.block.q-py-sm Set the amount
+        span.label-text.block Set the amount
         q-input(
           v-model="amountCryptoCoins"
           placeholder="0 USDT"
@@ -30,7 +30,8 @@ q-card.q-pa-lg.flex(style="min-height: 100%")
       label="Next"
       color="primary"
       :disable="!amountCryptoCoins"
-      :to="{ name: links.PAYMENT_DETAILS.name }"
+      @click="nextToPaymentDetails"
+      :loading="loaderNextBtn"
       unelevated
       no-caps
     )
@@ -38,11 +39,12 @@ q-card.q-pa-lg.flex(style="min-height: 100%")
 
 <script setup lang="ts">
 import UiInput from 'components/ui/UiInput.vue'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { settingsState } from 'stores/settings'
 import { storeToRefs } from 'pinia'
 import { links } from 'src/common/routerLinks'
 import { useRouter } from 'vue-router'
+import { invoiceRequest, methods } from 'src/common/requests'
 
 const { getCurrency, getPrice } = settingsState()
 const {
@@ -50,10 +52,13 @@ const {
   selectedCurrency,
   loadingCurrency,
   amountCurrency,
-  amountCoin
+  amountCoin,
+  qrContent,
+  invoice
 } = storeToRefs(settingsState())
 
 const router = useRouter()
+const loaderNextBtn = ref(false)
 
 onMounted(() => {
   getCurrency()
@@ -88,6 +93,30 @@ const suffixAmountCryptoCoins = computed(() => {
     return ''
   }
 })
+
+const nextToPaymentDetails = () => {
+  loaderNextBtn.value = true
+  invoiceRequest({
+    method: methods.post,
+    params: {
+      qr_content: qrContent.value,
+      currency: selectedCurrency.value?.currency,
+      amount: Number(amountCurrency.value)
+    }
+  })
+    .then((res) => {
+      invoice.value = res.data.invoice
+      router.push({ name: links.PAYMENT_DETAILS.name })
+    })
+    .catch((e) => {
+      console.log(e.response)
+    })
+    .finally(() => {
+      loaderNextBtn.value = false
+    })
+
+  // router.push({ name: links.PAYMENT_DETAILS.name })
+}
 </script>
 
 <style scoped></style>

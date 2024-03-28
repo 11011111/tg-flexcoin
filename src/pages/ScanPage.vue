@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import UiUploaderBtn from 'components/ui/UiUploaderBtn.vue'
-import { apiLinks } from 'src/common/routerLinks'
+import { apiLinks, links } from 'src/common/routerLinks'
 const imgPath = process.env.DEFAULT_URL_PATH
 </script>
 
@@ -20,11 +20,12 @@ q-card.row.text-center.justify-center.q-pa-lg.content-between(style="height:100v
           :icon="`img:${imgPath}run_time.svg`"
           color="bg"
           size="12px"
+          :to="{name: links.PAYMENT_DETAILS.name}"
           unelevated
           no-caps
         )
       .col-10.q-px-xs
-        UiUploaderBtn(:requestURL="apiLinks.QR.list")
+        UiUploaderBtn(:requestURL="apiLinks.QR.list" )
 </template>
 
 <style scoped lang="sass">

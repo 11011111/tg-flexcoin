@@ -81,6 +81,7 @@ body{
     font-size: 12px;
     font-weight: 800;
     line-height: 16px;
+    padding: 6px 0;
   }
 
   .label-text {
@@ -106,6 +107,16 @@ body{
 
   .text-dark {
     color: $dark;
+  }
+
+  .caption {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+  }
+
+  .border-radius-square {
+    border-radius: $border-radius;
   }
 
   .btn-style {

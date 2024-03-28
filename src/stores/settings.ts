@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import { currenciesRequest, methods, priceRequest } from 'src/common/requests'
 
 export const settingsState = defineStore('settingsState', () => {
@@ -9,6 +9,14 @@ export const settingsState = defineStore('settingsState', () => {
   const loadingCurrency = ref(true)
   const amountCurrency = ref<number | null>(null)
   const amountCoin = ref<number | null>(null)
+  const qrContent = ref('')
+  const invoice = ref(null)
+  const errorDialogBottom = ref({
+    title: 'Bad request',
+    desc: 'Sorry, QR code can’t be recognized, please try again',
+    img_name: 'error_badRequest.svg',
+    isShow: false
+  })
 
   // Get Currency
   async function getCurrency() {
@@ -51,6 +59,9 @@ export const settingsState = defineStore('settingsState', () => {
     loadingCurrency,
     amountCurrency,
     amountCoin,
+    qrContent,
+    invoice,
+    errorDialogBottom,
 
     getCurrency,
     getPrice

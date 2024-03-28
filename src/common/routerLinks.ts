@@ -38,5 +38,9 @@ export const apiLinks: IApiLinks = {
   },
   PRICE: {
     list: '/bot/exchange/price'
+  },
+  INVOICE: {
+    list: '/bot/invoice',
+    retrieve: (id) => `/bot/invoice/${id}`
   }
 }

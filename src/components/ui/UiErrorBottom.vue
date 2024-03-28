@@ -6,6 +6,8 @@ defineProps({
   modelValue: Boolean
 })
 
+defineEmits(['update:modelValue'])
+
 const imgPath = process.env.DEFAULT_URL_PATH
 </script>
 
@@ -29,7 +31,7 @@ q-dialog(
       q-btn.button-text.btn-style.full-width(
         label="Ok"
         color="primary"
-        v-close-popup
+        @click="$emit('update:modelValue', false)"
         unelevated
         no-caps
       )

@@ -1,6 +1,6 @@
 <template lang="pug">
 .row.flex.column.full-width
-  span.label-text.block.q-py-sm {{ label }}
+  span.label-text.block {{ label }}
   q-input(
     :model-value="modelValue"
     :placeholder="placeholder"

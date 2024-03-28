@@ -54,3 +54,6 @@ export const QRRequest = (incomingData?: IIncomingData) =>
 // Конвертирование валюты в USDT
 export const priceRequest = (incomingData?: IIncomingData) =>
   request({ ...incomingData, link: apiLinks.PRICE })
+// Создание InvoiceID/расчета
+export const invoiceRequest = (incomingData?: IIncomingData) =>
+  request({ ...incomingData, link: apiLinks.INVOICE })
