@@ -29,7 +29,7 @@ const copyRecipientAddressBtn = () => {
 
   setTimeout(() => {
     isCopyRecipientAddress.value = true
-  }, 3000)
+  }, 1000)
 }
 
 const copyAmountBtn = () => {

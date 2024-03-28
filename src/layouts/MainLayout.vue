@@ -29,6 +29,7 @@ tg.BackButton.show()
 tg.BackButton.onClick(() => {
   history.back()
 })
+tg.openTelegramLink(window.location.href)
 
 onBeforeMount(() => {
   openWebApp(tg.initData) // Иначе - проходим авторизацию
