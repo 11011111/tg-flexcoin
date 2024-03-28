@@ -77,8 +77,7 @@ q-card.q-pa-lg.flex(style="min-height: 100%")
       )
         template(v-slot:append)
           .bg-secondary.border-radius-square.input-append-btn(@click="copyRecipientAddressBtn")
-            img(:src="copyIco" v-if="isCopyRecipientAddress")
-            img(:src="roundDoneIco" v-else)
+            img(:src="isCopyRecipientAddress ? copyIco : roundDoneIco")
 
     .row.flex.column.full-width.q-mt-sm
       span.label-text.block Amount
@@ -91,8 +90,8 @@ q-card.q-pa-lg.flex(style="min-height: 100%")
       )
         template(v-slot:append)
           .bg-secondary.border-radius-square.input-append-btn(@click="copyAmountBtn")
-            img(:src="copyIco" v-if="isCopyAmount")
-            img(:src="roundDoneIco" v-else)
+            img(:src="isCopyAmount ? copyIco : roundDoneIco")
+
       span.caption.text-pink.my-hint Important! You must send the SAME AMOUNT, otherwise, the payment will not be processed.
 
   .row.justify-center.full-width.q-px-sm.q-mb-lg.content-end
