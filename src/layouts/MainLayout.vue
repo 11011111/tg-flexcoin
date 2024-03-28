@@ -28,14 +28,13 @@ const router = useRouter()
 
 if (route.name !== 'scan' || 'onboarding') {
   tg.BackButton.show()
-  tg.BackButton.onClick(() => {
-    router.back()
-  })
 }
-// console.log(route)
-tg.showAlert(window.location.href)
-// tg.openTelegramLink(window.location.href)
 
+tg.BackButton.onClick(() => {
+  if (route.name !== 'scan' || 'onboarding') {
+    router.back()
+  }
+})
 onBeforeMount(() => {
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })
