@@ -3,14 +3,14 @@ import UiTimer from '../components/ui/UiTimer.vue'
 import { computed, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { settingsState } from 'stores/settings'
-import { useQuasar } from 'quasar'
+import copyIco from 'src/assets/icons/copy.svg'
+import roundDoneIco from 'src/assets/icons/round-done.svg'
 
 const imgPath = process.env.DEFAULT_URL_PATH
 const currencyNetwork = ref('USDT Tron (TRC 20)')
 const { invoice } = storeToRefs(settingsState())
 const isCopyRecipientAddress = ref(true)
 const isCopyAmount = ref(true)
-const $q = useQuasar()
 
 const recipientAddress = computed(() => {
   return invoice.value?.pay_to_address
@@ -26,20 +26,14 @@ const date_expire = computed(() => {
 
 const copyRecipientAddressBtn = () => {
   isCopyRecipientAddress.value = false
-  $q.notify({
-    message: "Recipient's address copied",
-    color: 'green',
-    timeout: 2000
-  })
+
+  setTimeout(() => {
+    isCopyRecipientAddress.value = true
+  }, 3000)
 }
 
 const copyAmountBtn = () => {
   isCopyAmount.value = false
-  $q.notify({
-    message: 'Amount copied',
-    color: 'green',
-    timeout: 2000
-  })
 
   setTimeout(() => {
     isCopyAmount.value = true
@@ -83,8 +77,8 @@ q-card.q-pa-lg.flex(style="min-height: 100%")
       )
         template(v-slot:append)
           .bg-secondary.border-radius-square.input-append-btn(@click="copyRecipientAddressBtn")
-            img(src="~assets/icons/copy.svg" v-if="isCopyRecipientAddress")
-            img(src="~assets/icons/round-done.svg" v-else)
+            img(:src="copyIco" v-if="isCopyRecipientAddress")
+            img(:src="roundDoneIco" v-else)
 
     .row.flex.column.full-width.q-mt-sm
       span.label-text.block Amount
@@ -97,9 +91,9 @@ q-card.q-pa-lg.flex(style="min-height: 100%")
       )
         template(v-slot:append)
           .bg-secondary.border-radius-square.input-append-btn(@click="copyAmountBtn")
-            img(src="~assets/icons/copy.svg" v-if="isCopyAmount")
-            img(src="~assets/icons/round-done.svg" v-else)
-      span.caption.text-pink.my-hint It should be the SAME AMOUNT otherwise it can be failed.
+            img(:src="copyIco" v-if="isCopyAmount")
+            img(:src="roundDoneIco" v-else)
+      span.caption.text-pink.my-hint Important! You must send the SAME AMOUNT, otherwise, the payment will not be processed.
 
   .row.justify-center.full-width.q-px-sm.q-mb-lg.content-end
     .col-2.q-px-xs

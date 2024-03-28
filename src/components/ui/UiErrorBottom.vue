@@ -25,8 +25,8 @@ q-dialog(
           q-icon.q-pt-md(:name="`img:${imgPath}close.svg`" size="24px" @click="modelValue = !modelValue")
     q-card-section.q-pb-lg
       .row.justify-center
-        p.text-center.q-px-sm(v-if="desc") {{ desc }}
-        img.text-center.q-px-lg.q-mt-md(v-if="nameImg" :src="`${imgPath}${nameImg}`")
+        p.text-center.q-px-sm.full-width(v-if="desc") {{ desc }}
+        img.text-center.q-px-lg.q-mt-md.flex(v-if="nameImg" :src="`${imgPath}${nameImg}`")
     .row.justify-center.q-px-lg.q-pb-lg
       q-btn.button-text.btn-style.full-width(
         label="Ok"

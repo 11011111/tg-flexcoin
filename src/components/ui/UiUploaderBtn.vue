@@ -39,8 +39,9 @@ watch(fileUpload, (file) => {
         }
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err.response)
         errorDialogBottom.value.isShow = true
+        errorDialogBottom.value.desc = err.response.data.error
         fileUpload.value = null
         loaderUploadFile.value = false
       })
