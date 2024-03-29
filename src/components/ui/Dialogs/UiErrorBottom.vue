@@ -1,8 +1,8 @@
 <script setup lang="ts">
 defineProps({
-  title: String,
-  desc: String,
-  nameImg: String,
+  error_title: String,
+  error_message: String,
+  media: String,
   modelValue: Boolean
 })
 
@@ -19,14 +19,14 @@ q-dialog(
   q-card.full-width.modern-dialog.q-py-sm.q-px-md
     q-card-section.no-padding
       .row.items-center.no-wrap
-        .col(v-if="title")
-          h2.text-center.q-pl-lg.q-pt-md {{ title }}
+        .col(v-if="error_title")
+          h2.text-center.q-pl-lg.q-pt-md {{ error_title }}
         .col-auto
           q-icon.q-pt-md(:name="`img:${imgPath}close.svg`" size="24px" @click="modelValue = !modelValue")
     q-card-section.q-pb-lg
       .row.justify-center
-        p.text-center.q-px-sm.full-width(v-if="desc") {{ desc }}
-        img.text-center.q-px-lg.q-mt-md.flex(v-if="nameImg" :src="`${imgPath}${nameImg}`")
+        p.text-center.q-px-sm.full-width(v-if="error_message") {{ error_message }}
+        img.text-center.q-px-lg.q-mt-md.flex(v-if="media" :src="`${imgPath}${media}`")
     .row.justify-center.q-px-lg.q-pb-lg
       q-btn.button-text.btn-style.full-width(
         label="Ok"
@@ -37,8 +37,4 @@ q-dialog(
       )
 </template>
 
-<style scoped lang="sass">
-.modern-dialog
-  background: #fff
-  border-radius: 10px 10px 0 0
-</style>
+<style scoped lang="sass"></style>

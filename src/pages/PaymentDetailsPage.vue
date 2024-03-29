@@ -1,23 +1,34 @@
 <script setup lang="ts">
 import UiTimer from '../components/ui/UiTimer.vue'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { settingsState } from 'stores/settings'
 import copyIco from 'src/assets/icons/copy.svg'
 import roundDoneIco from 'src/assets/icons/round-done.svg'
+import { copyToClipboard } from 'quasar'
+import UiConfirm from 'components/ui/Dialogs/UiConfirm.vue'
+import { remainingTimeFn } from 'src/common/utils'
+import UiTimeout from 'components/ui/Dialogs/UiTimeout.vue'
 
 const imgPath = process.env.DEFAULT_URL_PATH
 const currencyNetwork = ref('USDT Tron (TRC 20)')
 const { invoice } = storeToRefs(settingsState())
 const isCopyRecipientAddress = ref(true)
 const isCopyAmount = ref(true)
+const isConfirmShow = ref(false)
+const isTimeoutShow = ref(false)
+
+onMounted(() => {
+  console.log(checkTimer())
+  isTimeoutShow.value = checkTimer()
+})
 
 const recipientAddress = computed(() => {
   return invoice.value?.pay_to_address
 })
 
 const usd_amount = computed(() => {
-  return invoice.value?.usd_amount
+  return invoice.value?.usd_amount + ' USDT'
 })
 
 const date_expire = computed(() => {
@@ -25,6 +36,7 @@ const date_expire = computed(() => {
 })
 
 const copyRecipientAddressBtn = () => {
+  copyToClipboard(recipientAddress.value)
   isCopyRecipientAddress.value = false
 
   setTimeout(() => {
@@ -33,11 +45,28 @@ const copyRecipientAddressBtn = () => {
 }
 
 const copyAmountBtn = () => {
+  copyToClipboard(usd_amount.value.replace(/ USDT/g, ''))
   isCopyAmount.value = false
 
   setTimeout(() => {
     isCopyAmount.value = true
-  }, 3000)
+  }, 1000)
+}
+
+watch(date_expire, () => {
+  console.log(checkTimer())
+  isTimeoutShow.value = checkTimer()
+})
+function checkTimer() {
+  // remainingTimeFn(date_expire.value)
+  if (
+    remainingTimeFn(date_expire.value) > 0 ||
+    remainingTimeFn(date_expire.value)
+  ) {
+    return false
+  } else {
+    return true
+  }
 }
 </script>
 
@@ -107,10 +136,21 @@ q-card.q-pa-lg.flex(style="min-height: 100%")
       q-btn.button-text.btn-style.full-width(
         label="Submit"
         color="primary"
-        disable
+        @click="isConfirmShow = true"
         unelevated
         no-caps
       )
+UiConfirm(
+  title="Please confirm that you have paid by payment details"
+  desc="I confirm that I have paid according to the details shown on the screen"
+  v-model="isConfirmShow"
+)
+UiTimeout(
+  title="Oops, the time is up, you didn't have time to pay"
+  desc="Go back to the main page, scan the QR code and try again"
+  media="bg_timeout.svg"
+  v-model="isTimeoutShow"
+)
 </template>
 
 <style lang="sass">

@@ -4,8 +4,9 @@ import axios, {
   InternalAxiosRequestConfig
 } from 'axios'
 import { storeToRefs } from 'pinia'
-import { Notify } from 'quasar'
 import { settingsState } from 'stores/settings'
+
+const { errorDialogBottom } = storeToRefs(settingsState())
 
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
@@ -33,37 +34,36 @@ api.interceptors.response.use(
     const { liveUpdate } = storeToRefs(settingsState())
     console.log(error.response)
     switch (error.response?.status) {
-      // case 400:
-      //   return Promise.reject(error)
+      case 400:
+        errorDialogBottom.value = error.response.data
+        break
       case 401:
         /*
          * В случае получения 401 ошибки в любом случае переадресовываем на страницу входа в приложение
          * */
         localStorage.removeItem('access')
         window.location.hash = '/'
-        Notify.create('Не авторизован')
+        errorDialogBottom.value = error.response.data
         liveUpdate.value = false
         break
       case 403:
-        Notify.create('Недостаточно прав доступа')
+        errorDialogBottom.value = error.response.data
         break
       case 404:
-        Notify.create(error?.response?.data?.detail || 'Объект не найден')
+        errorDialogBottom.value = error.response.data
         break
       case 422:
-        Notify.create(
-          error?.response?.data?.detail ||
-            'Запрос корректный, но нет возможности обработать!'
-        )
+        errorDialogBottom.value = error.response.data
         break
       case 500:
-        console.error(error?.response?.data)
-        Notify.create(error?.response?.data?.detail || 'Ошибка сервера')
+        errorDialogBottom.value = error.response.data
         break
       case 502:
-      // case undefined:
-      //   Notify.create('Сервис временно недоступен')
-      //   break
+        errorDialogBottom.value = error.response.data
+        break
+      case undefined:
+        console.error(error?.response?.data)
+        break
       default:
         /*
          * На случай непредвиденных ошибок

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { remainingTimeFn } from 'src/common/utils'
 
 const props = defineProps({
   unixTime: {
@@ -14,7 +15,7 @@ const seconds = ref(0)
 const timer = ref(null)
 
 const mountTimer = () => {
-  remainingTime.value = Math.floor((props.unixTime * 1000 - Date.now()) / 1000) // Преобразуем Unix Timestamp в миллисекунды и вычтем текущее время
+  remainingTime.value = remainingTimeFn(props.unixTime)
   updateTimer()
   timer.value = setInterval(updateTimer, 1000)
 }

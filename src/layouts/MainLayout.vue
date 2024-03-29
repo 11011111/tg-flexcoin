@@ -4,9 +4,9 @@
       <router-view />
     </q-page-container>
     <UiErrorBottom
-      :title="errorDialogBottom.title"
-      :desc="errorDialogBottom.desc"
-      :name-img="errorDialogBottom.img_name"
+      :error_title="errorDialogBottom.error_title"
+      :error_message="errorDialogBottom.error_message"
+      :media="errorDialogBottom.media"
       v-model="errorDialogBottom.isShow"
     />
   </q-layout>
@@ -16,7 +16,7 @@
 import { onBeforeMount, watch } from 'vue'
 import { profileState } from 'stores/profile'
 import { useRoute, useRouter } from 'vue-router'
-import UiErrorBottom from 'components/ui/UiErrorBottom.vue'
+import UiErrorBottom from 'components/ui/Dialogs/UiErrorBottom.vue'
 import { storeToRefs } from 'pinia'
 import { settingsState } from 'stores/settings'
 

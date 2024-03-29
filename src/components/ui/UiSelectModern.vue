@@ -53,9 +53,6 @@ q-dialog(
   color: $dark
   padding-right: 0
 
-.modern-dialog
-  border-radius: 10px 10px 0 0
-
 .color-currency-select
   color: #aaaaaa
 
