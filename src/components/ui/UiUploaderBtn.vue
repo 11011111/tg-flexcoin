@@ -13,7 +13,6 @@ const props = defineProps({
     required: true
   }
 })
-const tg = window.Telegram.WebApp
 const { qrContent, errorDialogBottom } = storeToRefs(settingsState())
 const router = useRouter()
 const fileUpload = ref(null)
