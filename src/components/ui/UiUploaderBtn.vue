@@ -25,7 +25,7 @@ const tg = window.Telegram.WebApp // init TelegramWebApp
 watch(fileUpload, (file) => {
   if (file) {
     console.log(file)
-    tg.showAlert(file)
+    tg.showScanQrPopup('Scan')
     loaderUploadFile.value = true
     const fileSend = new FormData()
     fileSend.append('file', file)
