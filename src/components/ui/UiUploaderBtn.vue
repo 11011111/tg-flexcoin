@@ -51,6 +51,9 @@ watch(fileUpload, (file) => {
 //   loaderUploadFile.value = true
 //   e.preventDefault()
 // }
+const onSelectFile = (e) => {
+  e.preventDefault()
+}
 const clickBtn = () => {
   // refFileUpload.value.$el.click()
   refFileUpload.value.pickFiles()
@@ -67,7 +70,7 @@ q-btn.full-width.button-text.btn-style(
   no-caps
   )
 //qrcode-capture(@detect="onDetect" :capture="null" @change="onSelectFile" ref="refFileUpload" style="display: none")
-q-file.hidden(v-model="fileUpload" label="Standard" ref="refFileUpload")
+q-file.hidden(v-model="fileUpload" label="Standard" ref="refFileUpload" @change="onSelectFile")
 </template>
 
 <style scoped lang="sass">
