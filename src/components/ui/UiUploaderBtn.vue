@@ -24,8 +24,6 @@ const tg = window.Telegram.WebApp // init TelegramWebApp
 // CUD файла
 watch(fileUpload, (file) => {
   if (file) {
-    console.log(file)
-    tg.showAlert(file?.type)
     loaderUploadFile.value = true
     const fileSend = new FormData()
     fileSend.append('file', file)
