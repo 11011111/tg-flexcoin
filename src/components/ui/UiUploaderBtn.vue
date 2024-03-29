@@ -13,6 +13,7 @@ const props = defineProps({
     required: true
   }
 })
+const tg = window.Telegram.WebApp
 const { qrContent, errorDialogBottom } = storeToRefs(settingsState())
 const router = useRouter()
 const fileUpload = ref(null)
@@ -24,6 +25,7 @@ const tg = window.Telegram.WebApp // init TelegramWebApp
 // CUD файла
 watch(fileUpload, (file) => {
   if (file) {
+    tg.showAlert(fileUpload.value)
     loaderUploadFile.value = true
     const fileSend = new FormData()
     fileSend.append('file', file)
