@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 import { links } from 'src/common/routerLinks'
 import { settingsState } from 'stores/settings'
 import { storeToRefs } from 'pinia'
+import { QrcodeCapture } from 'vue-qrcode-reader'
 
 const props = defineProps({
   requestURL: {
@@ -19,9 +20,6 @@ const refFileUpload = ref(null)
 const loaderUploadFile = ref(false)
 const tg = window.Telegram.WebApp // init TelegramWebApp
 // Инициируется вызов input=file
-const clickBtn = () => {
-  refFileUpload.value.pickFiles()
-}
 
 // CUD файла
 watch(fileUpload, (file) => {
@@ -50,6 +48,19 @@ watch(fileUpload, (file) => {
       })
   }
 })
+const decode = ref('')
+const onDetect = (code) => {
+  decode.value = code[0]?.rawValue
+  loaderUploadFile.value = false
+  console.log(code)
+}
+const onSelectFile = (e) => {
+  loaderUploadFile.value = true
+  e.preventDefault()
+}
+const clickBtn = () => {
+  refFileUpload.value.$el.click()
+}
 </script>
 
 <template lang="pug">
@@ -61,7 +72,9 @@ q-btn.full-width.button-text.btn-style(
   unelevated
   no-caps
   )
-q-file.hidden(v-model="fileUpload" label="Standard" ref="refFileUpload")
+p {{ decode }}
+qrcode-capture(@detect="onDetect" :capture="null" @change="onSelectFile" ref="refFileUpload" style="display: none")
+//q-file.hidden(v-model="fileUpload" label="Standard" ref="refFileUpload")
 </template>
 
 <style scoped lang="sass">

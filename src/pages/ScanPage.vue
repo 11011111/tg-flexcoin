@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import UiUploaderBtn from 'components/ui/UiUploaderBtn.vue'
 import { apiLinks, links } from 'src/common/routerLinks'
+import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader'
+import { ref } from 'vue'
+
 const imgPath = process.env.DEFAULT_URL_PATH
 </script>
 
